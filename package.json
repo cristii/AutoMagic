@@ -1,0 +1,31 @@
+{
+  "name": "automagic",
+  "private": true,
+  "packageManager": "pnpm@10.0.0",
+  "scripts": {
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "lint": "turbo lint",
+    "typecheck": "turbo typecheck",
+    "test": "turbo test",
+
+    "dev:infra": "docker compose up -d postgres redis mailpit minio",
+    "docker:down": "docker compose down",
+    "docker:clean": "docker compose down -v",
+
+    "dev:api": "pnpm --filter @automagic/api dev",
+    "db:generate": "pnpm --filter @automagic/db db:generate",
+    "db:migrate": "pnpm --filter @automagic/db db:migrate",
+    "db:studio": "pnpm --filter @automagic/db db:studio",
+
+    "storybook": "pnpm --filter @automagic/storybook-web dev",
+    "storybook:build": "pnpm --filter @automagic/storybook-web build",
+    "storybook:test": "pnpm --filter @automagic/storybook-web test"
+  },
+  "devDependencies": {
+    "turbo": "latest",
+    "typescript": "latest",
+    "eslint": "latest",
+    "prettier": "latest"
+  }
+}

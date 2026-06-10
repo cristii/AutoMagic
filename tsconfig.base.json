@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "jsx": "react-jsx",
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "baseUrl": ".",
+    "paths": {
+      "@automagic/ui": ["packages/ui/src/index.ts"],
+      "@automagic/theme": ["packages/theme/src/index.ts"],
+      "@automagic/navigation": ["packages/navigation/src/index.ts"],
+      "@automagic/api-client": ["packages/api-client/src/index.ts"],
+      "@automagic/auth": ["packages/auth/src/index.ts"],
+      "@automagic/validators": ["packages/validators/src/index.ts"],
+      "@automagic/types": ["packages/types/src/index.ts"],
+      "@automagic/utils": ["packages/utils/src/index.ts"]
+    }
+  }
+}
