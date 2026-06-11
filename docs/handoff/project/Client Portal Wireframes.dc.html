@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&family=Gaegu:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body { background: #e7e3da; font-family: 'Kalam', cursive; color: #2b2b2b; -webkit-font-smoothing: antialiased; }
+  ::selection { background: #cdbcff; }
+</style>
+</helmet>
+<div style="min-height:100vh; padding:34px 30px 80px;">
+  <div style="max-width:1320px; margin:0 auto;">
+
+    <header style="display:flex; align-items:flex-end; justify-content:space-between; gap:24px; flex-wrap:wrap; margin-bottom:6px;">
+      <div>
+        <div style="display:flex; align-items:center; gap:10px;">
+          <span style="font-size:26px; color:#7a5af0;">◆</span>
+          <h1 style="margin:0; font-size:34px; font-weight:700; letter-spacing:.5px;">AutoMagic · Client portal wireframes</h1>
+        </div>
+        <p style="margin:6px 0 0; font-size:18px; color:#6b675f;">client.automagic.dev — where a client posts work, picks a VA, tracks tasks &amp; pays. Low-fi, desktop-first.</p>
+      </div>
+      <div style="font-family:'Gaegu',cursive; font-size:15px; color:#857f74; text-align:right; line-height:1.5;">
+        <div style="border:2px dashed #b9b5ab; border-radius:10px; padding:7px 12px; background:#fbfaf7;">working draft · v1<br>same shell + system as studio</div>
+      </div>
+    </header>
+
+    <!-- TAB BAR -->
+    <nav style="display:flex; flex-wrap:wrap; gap:8px; margin:22px 0 26px; border-bottom:2.5px solid #2b2b2b; padding-bottom:14px;">
+      <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="9">
+        <button onClick="{{ t.onClick }}" style="{{ t.style }}">{{ t.label }}</button>
+      </sc-for>
+    </nav>
+
+    <!-- ============ DASHBOARD ============ -->
+    <sc-if value="{{ isDashboard }}" hint-placeholder-val="{{ true }}">
+    <section>
+      <div style="display:flex; align-items:baseline; gap:12px; margin-bottom:18px; flex-wrap:wrap;">
+        <h2 style="margin:0; font-size:24px; font-weight:700;">/dashboard</h2>
+        <span style="font-family:'Gaegu',cursive; color:#857f74; font-size:16px;">active tasks · updates · messages · invoices · calendar items</span>
+      </div>
+
+      <div style="border:3px solid #2b2b2b; border-radius:16px; background:#fff; box-shadow:6px 8px 0 rgba(43,43,43,.10); overflow:hidden;">
+        <div style="display:flex; gap:7px; padding:10px 14px; border-bottom:2px solid #2b2b2b; background:#f3f1ec; align-items:center;">
+          <span style="width:11px;height:11px;border-radius:50%;border:1.5px solid #2b2b2b;"></span><span style="width:11px;height:11px;border-radius:50%;border:1.5px solid #2b2b2b;"></span><span style="width:11px;height:11px;border-radius:50%;border:1.5px solid #2b2b2b;"></span>
+          <span style="margin-left:10px; font-family:'Gaegu',cursive; font-size:14px; color:#857f74;">client.automagic.dev/dashboard</span>
+        </div>
+        <div style="display:flex; min-height:580px;">
+
+          <!-- SIDEBAR -->
+          <div style="width:204px; border-right:2px solid #2b2b2b; background:#faf9f6; padding:16px 12px; display:flex; flex-direction:column;">
+            <div style="display:flex; align-items:center; gap:8px; padding:0 4px 16px;"><span style="color:#7a5af0; font-size:18px;">◆</span><span style="font-weight:700; font-size:19px;">AutoMagic</span></div>
+            <div style="display:flex; flex-direction:column; gap:3px;">
+              <div style="display:flex; align-items:center; gap:9px; padding:8px 10px; border-radius:9px; background:#efeaff; border-left:3px solid #7a5af0;"><span style="width:16px;height:16px;border-radius:4px;background:#7a5af0;"></span><span style="font-size:16px; font-weight:700;">Dashboard</span></div>
+              <div style="display:flex; align-items:center; gap:9px; padding:8px 10px; border-radius:9px;"><span style="width:16px;height:16px;border-radius:4px;border:2px solid #b9b5ab;"></span><span style="font-size:16px; color:#6b675f;">Tasks</span></div>
+              <div style="display:flex; align-items:center; gap:9px; padding:8px 10px; border-radius:9px;"><span style="width:16px;height:16px;border-radius:4px;border:2px solid #b9b5ab;"></span><span style="font-size:16px; color:#6b675f;">Find VAs</span></div>
+              <div style="display:flex; align-items:center; gap:9px; padding:8px 10px; border-radius:9px;"><span style="width:16px;height:16px;border-radius:4px;border:2px solid #b9b5ab;"></span><span style="font-size:16px; color:#6b675f;">Chat</span><span style="margin-left:auto; font-size:12px; background:#c0392b; color:#fff; border-radius:8px; padding:1px 6px;">2</span></div>
+              <div style="display:flex; align-items:center; gap:9px; padding:8px 10px; border-radius:9px;"><span style="width:16px;height:16px;border-radius:4px;border:2px solid #b9b5ab;"></span><span style="font-size:16px; color:#6b675f;">Calendar</span></div>
+              <div style="display:flex; align-items:center; gap:9px; padding:8px 10px; border-radius:9px;"><span style="width:16px;height:16px;border-radius:4px;border:2px solid #b9b5ab;"></span><span style="font-size:16px; color:#6b675f;">Notifications</span></div>
+              <div style="display:flex; align-items:center; gap:9px; padding:8px 10px; border-radius:9px;"><span style="width:16px;height:16px;border-radius:4px;border:2px solid #b9b5ab;"></span><span style="font-size:16px; color:#6b675f;">Profile</span></div>
+            </div>
+            <div style="margin-top:auto; display:flex; align-items:center; gap:9px; padding:9px; border:2px dashed #b9b5ab; border-radius:11px;"><div style="width:30px;height:30px;border-radius:50%;background:repeating-linear-gradient(135deg,#ece9e2,#ece9e2 5px,#f6f4ef 5px,#f6f4ef 10px);border:2px solid #b9b5ab;"></div><div><div style="font-size:14px; font-weight:700;">Acme Co</div><div style="font-size:12px; color:#857f74;">client</div></div></div>
+          </div>
+
+          <!-- MAIN -->
+          <div style="flex:1; display:flex; flex-direction:column; min-width:0;">
+            <div style="height:52px; border-bottom:2px solid #2b2b2b; display:flex; align-items:center; gap:12px; padding:0 18px;">
+              <div style="flex:1; max-width:300px; height:30px; border:2px solid #cfcabf; border-radius:9px; display:flex; align-items:center; padding:0 10px; color:#a8a399; font-family:'Gaegu',cursive; font-size:14px;">Search tasks, VAs…</div>
+              <div style="margin-left:auto; padding:7px 16px; background:#7a5af0; color:#fff; border:2.5px solid #2b2b2b; border-radius:10px; font-size:14px; font-weight:700; box-shadow:2px 2px 0 rgba(43,43,43,.2);">+ Post a task</div>
+              <div style="position:relative; width:22px;height:22px;border:2px solid #2b2b2b;border-radius:6px;"><span style="position:absolute;top:-5px;right:-5px;width:11px;height:11px;background:#c0392b;border-radius:50%;border:1.5px solid #fff;"></span></div>
+              <div style="width:32px;height:32px;border-radius:50%;background:repeating-linear-gradient(135deg,#ece9e2,#ece9e2 5px,#f6f4ef 5px,#f6f4ef 10px);border:2px solid #b9b5ab;"></div>
+            </div>
+
+            <div style="flex:1; padding:22px; display:flex; flex-direction:column; gap:18px; background:#fdfdfc;">
+              <div>
+                <div style="font-size:24px; font-weight:700;">Welcome back, Acme Co</div>
+                <div style="font-family:'Gaegu',cursive; font-size:16px; color:#857f74;">2 tasks in progress · 1 task collecting proposals · $500 invoice due Fri</div>
+              </div>
+
+              <!-- KPI ROW -->
+              <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:12px;">
+                <div style="border:2px solid #cfcabf; border-radius:13px; padding:13px; background:#fff;"><div style="font-family:'Gaegu',cursive; font-size:13px; color:#857f74; text-transform:uppercase; letter-spacing:.5px;">Active tasks</div><div style="height:26px; width:30%; background:#cdbcff; border-radius:6px; margin-top:8px;"></div></div>
+                <div style="border:2px solid #cfcabf; border-radius:13px; padding:13px; background:#fff;"><div style="font-family:'Gaegu',cursive; font-size:13px; color:#857f74; text-transform:uppercase; letter-spacing:.5px;">Awaiting proposals</div><div style="height:26px; width:25%; background:#d9d5cc; border-radius:6px; margin-top:8px;"></div></div>
+                <div style="border:2px solid #cfcabf; border-radius:13px; padding:13px; background:#fff;"><div style="font-family:'Gaegu',cursive; font-size:13px; color:#857f74; text-transform:uppercase; letter-spacing:.5px;">Unread messages</div><div style="height:26px; width:25%; background:#d9d5cc; border-radius:6px; margin-top:8px;"></div></div>
+                <div style="border:2px solid #cfcabf; border-radius:13px; padding:13px; background:#fff;"><div style="font-family:'Gaegu',cursive; font-size:13px; color:#857f74; text-transform:uppercase; letter-spacing:.5px;">Amount due</div><div style="height:26px; width:55%; background:#f0d9a0; border-radius:6px; margin-top:8px;"></div></div>
+              </div>
+
+              <!-- MAIN GRID -->
+              <div style="display:grid; grid-template-columns:1.7fr 1fr; gap:18px; align-items:start;">
+                <div style="display:flex; flex-direction:column; gap:18px;">
+                  <div style="border:2px solid #cfcabf; border-radius:13px; background:#fff; padding:15px;">
+                    <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px;"><div style="font-size:18px; font-weight:700;">Your tasks</div><div style="font-family:'Gaegu',cursive; font-size:14px; color:#7a5af0;">view all →</div></div>
+                    <div style="display:flex; flex-direction:column; gap:9px;">
+                      <div style="display:flex; align-items:center; gap:11px; padding:11px; border:2px solid #e3dfd6; border-radius:10px;"><div style="flex:1;"><div style="height:11px; width:55%; background:#d9d5cc; border-radius:5px;"></div><div style="height:8px; width:35%; background:#eceae3; border-radius:4px; margin-top:6px;"></div></div><div style="width:24px;height:24px;border-radius:50%;background:repeating-linear-gradient(135deg,#ece9e2,#ece9e2 4px,#f6f4ef 4px,#f6f4ef 8px);border:1.5px solid #b9b5ab;"></div><span style="font-size:12px; background:#f1ecff; color:#7a5af0; border:1.5px solid #cdbcff; border-radius:8px; padding:2px 8px;">in progress</span></div>
+                      <div style="display:flex; align-items:center; gap:11px; padding:11px; border:2px solid #e3dfd6; border-radius:10px;"><div style="flex:1;"><div style="height:11px; width:62%; background:#d9d5cc; border-radius:5px;"></div><div style="height:8px; width:30%; background:#eceae3; border-radius:4px; margin-top:6px;"></div></div><span style="font-size:12px; background:#fdf8ec; color:#b08620; border:1.5px solid #e7cf94; border-radius:8px; padding:2px 8px;">5 proposals</span></div>
+                      <div style="display:flex; align-items:center; gap:11px; padding:11px; border:2px solid #e3dfd6; border-radius:10px;"><div style="flex:1;"><div style="height:11px; width:48%; background:#d9d5cc; border-radius:5px;"></div><div style="height:8px; width:40%; background:#eceae3; border-radius:4px; margin-top:6px;"></div></div><span style="font-size:12px; background:#eef6ef; color:#3f7d53; border:1.5px solid #b9d8c2; border-radius:8px; padding:2px 8px;">delivered</span></div>
+                    </div>
+                  </div>
+                  <div style="border:2px solid #cfcabf; border-radius:13px; background:#fff; padding:15px;">
+                    <div style="font-size:18px; font-weight:700; margin-bottom:12px;">Recent updates</div>
+                    <div style="display:flex; flex-direction:column; gap:11px;">
+                      <div style="display:flex; gap:11px; align-items:flex-start;"><span style="width:11px;height:11px;border-radius:50%;background:#7a5af0;margin-top:4px;flex-shrink:0;"></span><div style="flex:1;"><div style="height:9px; width:70%; background:#d9d5cc; border-radius:5px;"></div><div style="height:8px; width:30%; background:#eceae3; border-radius:4px; margin-top:5px;"></div></div></div>
+                      <div style="display:flex; gap:11px; align-items:flex-start;"><span style="width:11px;height:11px;border-radius:50%;background:#3f7d53;margin-top:4px;flex-shrink:0;"></span><div style="flex:1;"><div style="height:9px; width:60%; background:#d9d5cc; border-radius:5px;"></div><div style="height:8px; width:25%; background:#eceae3; border-radius:4px; margin-top:5px;"></div></div></div>
+                      <div style="display:flex; gap:11px; align-items:flex-start;"><span style="width:11px;height:11px;border-radius:50%;background:#c89b2c;margin-top:4px;flex-shrink:0;"></span><div style="flex:1;"><div style="height:9px; width:78%; background:#d9d5cc; border-radius:5px;"></div><div style="height:8px; width:28%; background:#eceae3; border-radius:4px; margin-top:5px;"></div></div></div>
+                    </div>
+                  </div>
+                </div>
+                <div style="display:flex; flex-direction:column; gap:18px;">
+                  <div style="border:2px solid #cfcabf; border-radius:13px; background:#fff; padding:15px;">
+                    <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px;"><div style="font-size:18px; font-weight:700;">Messages</div><span style="font-size:12px; background:#c0392b; color:#fff; border-radius:8px; padding:1px 7px;">2 new</span></div>
+                    <div style="display:flex; flex-direction:column; gap:11px;">
+                      <div style="display:flex; gap:10px; align-items:flex-start;"><div style="width:30px;height:30px;border-radius:50%;background:repeating-linear-gradient(135deg,#ece9e2,#ece9e2 5px,#f6f4ef 5px,#f6f4ef 10px);border:2px solid #b9b5ab;flex-shrink:0;"></div><div style="flex:1;"><div style="height:10px; width:45%; background:#d9d5cc; border-radius:5px;"></div><div style="height:8px; width:80%; background:#eceae3; border-radius:4px; margin-top:6px;"></div></div></div>
+                      <div style="display:flex; gap:10px; align-items:flex-start;"><div style="width:30px;height:30px;border-radius:50%;background:repeating-linear-gradient(135deg,#ece9e2,#ece9e2 5px,#f6f4ef 5px,#f6f4ef 10px);border:2px solid #b9b5ab;flex-shrink:0;"></div><div style="flex:1;"><div style="height:10px; width:40%; background:#d9d5cc; border-radius:5px;"></div><div style="height:8px; width:70%; background:#eceae3; border-radius:4px; margin-top:6px;"></div></div></div>
+                    </div>
+                  </div>
+                  <div style="border:2px solid #cfcabf; border-radius:13px; background:#fff; padding:15px;">
+                    <div style="font-size:18px; font-weight:700; margin-bottom:12px;">Upcoming</div>
+                    <div style="display:flex; flex-direction:column; gap:9px;">
+                      <div style="display:flex; align-items:center; gap:10px;"><div style="text-align:center; width:34px;"><div style="font-size:11px; color:#857f74;">JUN</div><div style="font-size:17px; font-weight:700; line-height:1;">10</div></div><div style="flex:1; border-left:3px solid #7a5af0; padding-left:9px;"><div style="height:9px; width:75%; background:#d9d5cc; border-radius:5px;"></div><div style="height:7px; width:40%; background:#eceae3; border-radius:4px; margin-top:5px;"></div></div></div>
+                      <div style="display:flex; align-items:center; gap:10px;"><div style="text-align:center; width:34px;"><div style="font-size:11px; color:#857f74;">JUN</div><div style="font-size:17px; font-weight:700; line-height:1;">12</div></div><div style="flex:1; border-left:3px solid #c0392b; padding-left:9px;"><div style="height:9px; width:60%; background:#d9d5cc; border-radius:5px;"></div><div style="height:7px; width:35%; background:#eceae3; border-radius:4px; margin-top:5px;"></div></div></div>
+                    </div>
+                  </div>
+                  <div style="border:2px solid #f0d9a0; border-radius:13px; background:#fdf8ec; padding:15px;">
+                    <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:10px;"><div style="font-size:18px; font-weight:700;">Invoice due</div><span style="font-size:12px; background:#fdeeee; color:#c0392b; border:1.5px solid #e8b4b4; border-radius:8px; padding:2px 8px;">Fri</span></div>
+                    <div style="display:flex; align-items:center; gap:10px;"><div style="height:24px; width:80px; background:#f0d9a0; border-radius:6px;"></div><div style="margin-left:auto; padding:7px 15px; background:#2b2b2b; color:#fff; border-radius:9px; font-size:14px; font-weight:700;">Pay now</div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p style="margin:14px 2px 0; font-family:'Gaegu',cursive; font-size:16px; color:#c0392b; line-height:1.5;">△ notes: client lands on a "what needs me" view — tasks with status, proposals waiting for a decision, and the invoice due. "+ Post a task" is the primary action, pinned in the topbar on every screen. Mirrors the studio dashboard layout so the two apps feel like one product.</p>
+    </section>
+    </sc-if>
+
+    <!-- ============ TASKS ============ -->
+    <sc-if value="{{ isTasks }}">
+    <section>
+      <div style="display:flex; align-items:baseline; gap:12px; margin-bottom:18px; flex-wrap:wrap;">
+        <h2 style="margin:0; font-size:24px; font-weight:700;">/tasks</h2>
+        <span style="font-family:'Gaegu',cursive; color:#857f74; font-size:16px;">draft · posted · proposals in · active · completed · archived</span>
+      </div>
+      <div style="border:3px solid #2b2b2b; border-radius:16px; background:#fff; box-shadow:6px 8px 0 rgba(43,43,43,.10); overflow:hidden;">
+        <div style="display:flex; gap:7px; padding:10px 14px; border-bottom:2px solid #2b2b2b; background:#f3f1ec; align-items:center;">
+          <span style="width:11px;height:11px;border-radius:50%;border:1.5px solid #2b2b2b;"></span><span style="width:11px;height:11px;border-radius:50%;border:1.5px solid #2b2b2b;"></span><span style="width:11px;height:11px;border-radius:50%;border:1.5px solid #2b2b2b;"></span>
+          <span style="margin-left:10px; font-family:'Gaegu',cursive; font-size:14px; color:#857f74;">client.automagic.dev/tasks</span>
+        </div>
+        <div style="display:flex; min-height:580px;">
+          <!-- sidebar -->
+          <div style="width:204px; border-right:2px solid #2b2b2b; background:#faf9f6; padding:16px 12px; display:flex; flex-direction:column;">
+            <div style="display:flex; align-items:center; gap:8px; padding:0 4px 16px;"><span style="color:#7a5af0; font-size:18px;">◆</span><span style="font-weight:700; font-size:19px;">AutoMagic</span></div>
+            <div style="display:flex; flex-direction:column; gap:3px;">
+              <div style="display:flex; align-items:center; gap:9px; padding:8px 10px; border-radius:9px;"><span style="width:16px;height:16px;border-radius:4px;border:2px solid #b9b5ab;"></span><span style="font-size:16px; color:#6b675f;">Dashboard</span></div>
+              <div style="display:flex; align-items:center; gap:9px; padding:8px 10px; border-radius:9px; background:#efeaff; border-left:3px solid #7a5af0;"><span style="width:16px;height:16px;border-radius:4px;background:#7a5af0;"></span><span style="font-size:16px; font-weight:700;">Tasks</span></div>
+              <div style="display:flex; align-items:center; gap:9px; padding:8px 10px; border-radius:9px;"><span style="width:16px;height:16px;border-radius:4px;border:2px solid #b9b5ab;"></span><span style="font-size:16px; color:#6b675f;">Find VAs</span></div>
+              <div style="display:flex; align-items:center; gap:9px; padding:8px 10px; border-radius:9px;"><span style="width:16px;height:16px;border-radius:4px;border:2px solid #b9b5ab;"></span><span style="font-size:16px; color:#6b675f;">Chat</span></div>
+              <div style="display:flex; align-items:center; gap:9px; padding:8px 10px; border-radius:9px;"><span style="width:16px;height:16px;border-radius:4px;border:2px solid #b9b5ab;"></span><span style="font-size:16px; color:#6b675f;">Calendar</span></div>
+              <div style="display:flex; align-items:center; gap:9px; padding:8px 10px; border-radius:9px;"><span style="width:16px;height:16px;border-radius:4px;border:2px solid #b9b5ab;"></span><span style="font-size:16px; color:#6b675f;">Notifications</span></div>
+              <div style="display:flex; align-items:center; gap:9px; padding:8px 10px; border-radius:9px;"><span style="width:16px;height:16px;border-radius:4px;border:2px solid #b9b5ab;"></span><span style="font-size:16px; color:#6b675f;">Profile</span></div>
+            </div>
+            <div style="margin-top:auto; display:flex; align-items:center; gap:9px; padding:9px; border:2px dashed #b9b5ab; border-radius:11px;"><div style="width:30px;height:30px;border-radius:50%;background:repeating-linear-gradient(135deg,#ece9e2,#ece9e2 5px,#f6f4ef 5px,#f6f4ef 10px);border:2px solid #b9b5ab;"></div><div><div style="font-size:14px; font-weight:700;">Acme Co</div><div style="font-size:12px; color:#857f74;">client</div></div></div>
+          </div>
+          <!-- main -->
+          <div style="flex:1; display:flex; flex-direction:column; min-width:0; background:#fdfdfc;">
+            <div style="height:52px; border-bottom:2px solid #2b2b2b; display:flex; align-items:center; gap:12px; padding:0 18px;">
+              <div style="font-size:20px; font-weight:700;">My tasks</div>
+              <div style="margin-left:auto; padding:7px 16px; background:#7a5af0; color:#fff; border:2.5px solid #2b2b2b; border-radius:10px; font-size:14px; font-weight:700; box-shadow:2px 2px 0 rgba(43,43,43,.2);">+ Post a task</div>
+            </div>
+            <!-- status filter tabs -->
+            <div style="padding:12px 18px; border-bottom:2px dashed #e3dfd6; display:flex; gap:8px; flex-wrap:wrap;">
+              <span style="font-size:13px; padding:4px 13px; background:#7a5af0; color:#fff; border:2px solid #2b2b2b; border-radius:20px;">All</span>
+              <span style="font-size:13px; padding:4px 13px; border:2px solid #cfcabf; border-radius:20px; color:#6b675f;">Posted</span>
+              <span style="font-size:13px; padding:4px 13px; border:2px solid #cfcabf; border-radius:20px; color:#6b675f;">Active</span>
+              <span style="font-size:13px; padding:4px 13px; border:2px solid #cfcabf; border-radius:20px; color:#6b675f;">Completed</span>
+              <span style="font-size:13px; padding:4px 13px; border:2px solid #cfcabf; border-radius:20px; color:#6b675f;">Archived</span>
+              <span style="margin-left:auto; font-size:13px; padding:4px 13px; border:2px solid #cfcabf; border-radius:9px; color:#6b675f;">Sort: recent ▾</span>
+            </div>
+            <!-- list -->
+            <div style="flex:1; padding:18px; display:flex; flex-direction:column; gap:10px;">
+              <!-- column header -->
+              <div style="display:flex; align-items:center; gap:14px; padding:0 13px; font-family:'Gaegu',cursive; font-size:13px; color:#a8a399;">
+                <div style="flex:1;">task</div><div style="width:90px;">budget</div><div style="width:90px;">assigned</div><div style="width:120px;">status</div><div style="width:60px;"></div>
+              </div>
+              <div style="display:flex; align-items:center; gap:14px; padding:13px; border:2px solid #e3dfd6; border-radius:11px; background:#fff;"><div style="flex:1;"><div style="height:11px; width:50%; background:#d9d5cc; border-radius:5px;"></div><div style="height:8px; width:30%; background:#eceae3; border-radius:4px; margin-top:6px;"></div></div><div style="width:90px; font-size:14px; font-weight:700;">$240</div><div style="width:90px;"><div style="width:26px;height:26px;border-radius:50%;background:repeating-linear-gradient(135deg,#ece9e2,#ece9e2 4px,#f6f4ef 4px,#f6f4ef 8px);border:1.5px solid #b9b5ab;"></div></div><div style="width:120px;"><span style="font-size:12px; background:#f1ecff; color:#7a5af0; border:1.5px solid #cdbcff; border-radius:8px; padding:3px 9px;">in progress</span></div><div style="width:60px; text-align:right; color:#7a5af0; font-size:18px;">→</div></div>
+              <div style="display:flex; align-items:center; gap:14px; padding:13px; border:2px solid #e7cf94; border-radius:11px; background:#fdf8ec;"><div style="flex:1;"><div style="height:11px; width:62%; background:#d9d5cc; border-radius:5px;"></div><div style="height:8px; width:35%; background:#eceae3; border-radius:4px; margin-top:6px;"></div></div><div style="width:90px; font-size:14px; font-weight:700;">$180</div><div style="width:90px; font-family:'Gaegu',cursive; font-size:13px; color:#b08620;">— pick —</div><div style="width:120px;"><span style="font-size:12px; background:#fdf3da; color:#b08620; border:1.5px solid #e7cf94; border-radius:8px; padding:3px 9px;">5 proposals</span></div><div style="width:60px; text-align:right; color:#7a5af0; font-size:18px;">→</div></div>
+              <div style="display:flex; align-items:center; gap:14px; padding:13px; border:2px solid #e3dfd6; border-radius:11px; background:#fff;"><div style="flex:1;"><div style="height:11px; width:45%; background:#d9d5cc; border-radius:5px;"></div><div style="height:8px; width:28%; background:#eceae3; border-radius:4px; margin-top:6px;"></div></div><div style="width:90px; font-size:14px; font-weight:700;">$90</div><div style="width:90px; font-family:'Gaegu',cursive; font-size:13px; color:#a8a399;">—</div><div style="width:120px;"><span style="font-size:12px; background:#f3f1ec; color:#6b675f; border:1.5px solid #d9d5cc; border-radius:8px; padding:3px 9px;">posted</span></div><div style="width:60px; text-align:right; color:#7a5af0; font-size:18px;">→</div></div>
+              <div style="display:flex; align-items:center; gap:14px; padding:13px; border:2px solid #e3dfd6; border-radius:11px; background:#fff; opacity:.7;"><div style="flex:1;"><div style="height:11px; width:55%; background:#d9d5cc; border-radius:5px;"></div><div style="height:8px; width:32%; background:#eceae3; border-radius:4px; margin-top:6px;"></div></div><div style="width:90px; font-size:14px; font-weight:700;">$300</div><div style="width:90px;"><div style="width:26px;height:26px;border-radius:50%;background:repeating-linear-gradient(135deg,#ece9e2,#ece9e2 4px,#f6f4ef 4px,#f6f4ef 8px);border:1.5px solid #b9b5ab;"></div></div><div style="width:120px;"><span style="font-size:12px; background:#eef6ef; color:#3f7d53; border:1.5px solid #b9d8c2; border-radius:8px; padding:3px 9px;">completed</span></div><div style="width:60px; text-align:right; color:#7a5af0; font-size:18px;">→</div></div>
+              <div style="display:flex; align-items:center; gap:14px; padding:13px; border:2px dashed #d9d5cc; border-radius:11px; background:#fbfaf7; opacity:.6;"><div style="flex:1;"><div style="height:11px; width:40%; background:#d9d5cc; border-radius:5px;"></div></div><div style="width:90px; font-size:14px; color:#857f74;">—</div><div style="width:90px;"></div><div style="width:120px;"><span style="font-size:12px; background:#f3f1ec; color:#857f74; border:1.5px solid #d9d5cc; border-radius:8px; padding:3px 9px;">draft</span></div><div style="width:60px; text-align:right; color:#a8a399; font-size:18px;">→</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p style="margin:14px 2px 0; font-family:'Gaegu',cursive; font-size:16px; color:#c0392b; line-height:1.5;">△ notes: list (not board) — clients track their own handful of tasks and scan status fastest in a table. The "assigned" column shows the VA avatar once picked, or "— pick —" when proposals are waiting (gold = needs a decision). All 10 blueprint statuses collapse into these filter chips. Draft rows are dashed/dim.</p>
+    </section>
+    </sc-if>
+
+    <!-- ============ NEW TASK ============ -->
+    <sc-if value="{{ isNewTask }}">
+    <section>
+      <div style="display:flex; align-items:baseline; gap:12px; margin-bottom:18px; flex-wrap:wrap;">
+        <h2 style="margin:0; font-size:24px; font-weight:700;">/tasks/new</h2>
+        <span style="font-family:'Gaegu',cursive; color:#857f74; font-size:16px;">title · description · category · location · time · budget · files</span>
+      </div>
+      <div style="border:3px solid #2b2b2b; border-radius:16px; background:#fff; box-shadow:6px 8px 0 rgba(43,43,43,.10); overflow:hidden;">
+        <div style="display:flex; gap:7px; padding:10px 14px; border-bottom:2px solid #2b2b2b; background:#f3f1ec; align-items:center;">
+          <span style="width:11px;height:11px;border-radius:50%;border:1.5px solid #2b2b2b;"></span><span style="width:11px;height:11px;border-radius:50%;border:1.5px solid #2b2b2b;"></span><span style="width:11px;height:11px;border-radius:50%;border:1.5px solid #2b2b2b;"></span>
+          <span style="margin-left:10px; font-family:'Gaegu',cursive; font-size:14px; color:#857f74;">client.automagic.dev/tasks/new</span>
+        </div>
+        <!-- header -->
+        <div style="padding:18px 22px; border-bottom:2px solid #e3dfd6; display:flex; align-items:center; gap:10px; background:#fdfdfc;">
+          <span style="font-family:'Gaegu',cursive; font-size:14px; color:#7a5af0;">← Tasks</span>
+          <div style="font-size:21px; font-weight:700; margin-left:6px;">Post a new task</div>
+          <span style="font-family:'Gaegu',cursive; font-size:14px; color:#857f74;">→ VAs will send proposals</span>
+        </div>
+        <div style="display:grid; grid-template-columns:1.7fr 1fr; gap:0; background:#fdfdfc;">
+          <!-- form -->
+          <div style="padding:22px; display:flex; flex-direction:column; gap:16px; border-right:2px dashed #e3dfd6;">
+            <div>
+              <div style="font-size:14px; font-weight:700; margin-bottom:7px;">Task title</div>
+              <div style="height:42px; border:2px solid #cfcabf; border-radius:10px; display:flex; align-items:center; padding:0 12px; font-family:'Gaegu',cursive; color:#a8a399; font-size:15px;">e.g. Weekly competitor research report</div>
+            </div>
+            <div>
+              <div style="font-size:14px; font-weight:700; margin-bottom:7px;">Description</div>
+              <div style="height:96px; border:2px solid #cfcabf; border-radius:10px; padding:11px; display:flex; flex-direction:column; gap:7px;"><div style="height:8px; width:90%; background:#ece9e2; border-radius:4px;"></div><div style="height:8px; width:80%; background:#ece9e2; border-radius:4px;"></div><div style="height:8px; width:55%; background:#ece9e2; border-radius:4px;"></div></div>
+            </div>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+              <div><div style="font-size:14px; font-weight:700; margin-bottom:7px;">Category</div><div style="height:42px; border:2px solid #cfcabf; border-radius:10px; display:flex; align-items:center; justify-content:space-between; padding:0 12px; font-family:'Gaegu',cursive; color:#6b675f; font-size:15px;">Research &amp; reporting <span style="color:#a8a399;">▾</span></div></div>
+              <div><div style="font-size:14px; font-weight:700; margin-bottom:7px;">Location / remote</div><div style="height:42px; border:2px solid #cfcabf; border-radius:10px; display:flex; align-items:center; justify-content:space-between; padding:0 12px; font-family:'Gaegu',cursive; color:#6b675f; font-size:15px;">Remote <span style="color:#a8a399;">▾</span></div></div>
+            </div>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+              <div><div style="font-size:14px; font-weight:700; margin-bottom:7px;">Deadline</div><div style="height:42px; border:2px solid #cfcabf; border-radius:10px; display:flex; align-items:center; padding:0 12px; font-family:'Gaegu',cursive; color:#a8a399; font-size:15px;">Pick date &amp; time</div></div>
+              <div><div style="font-size:14px; font-weight:700; margin-bottom:7px;">Budget</div><div style="height:42px; border:2px solid #cfcabf; border-radius:10px; display:flex; align-items:center; padding:0 12px; font-family:'Gaegu',cursive; color:#a8a399; font-size:15px;">$ amount</div></div>
+            </div>
+            <div>
+              <div style="font-size:14px; font-weight:700; margin-bottom:7px;">Attachments</div>
+              <div style="height:80px; border:2px dashed #b9b5ab; border-radius:11px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:5px; background:#fbfaf7;"><span style="font-size:22px; color:#b9b5ab;">⤓</span><span style="font-family:'Gaegu',cursive; font-size:14px; color:#a8a399;">drag files or click to upload</span></div>
+            </div>
+            <div style="display:flex; gap:10px; margin-top:4px;">
+              <div style="padding:10px 18px; border:2px solid #cfcabf; border-radius:10px; font-size:15px; color:#6b675f;">Save draft</div>
+              <div style="margin-left:auto; padding:10px 24px; background:#7a5af0; color:#fff; border:2.5px solid #2b2b2b; border-radius:10px; font-size:15px; font-weight:700; box-shadow:2px 2px 0 rgba(43,43,43,.2);">Post task →</div>
+            </div>
+          </div>
+          <!-- right rail -->
+          <div style="padding:22px; display:flex; flex-direction:column; gap:16px;">
+            <div style="border:2px solid #cfcabf; border-radius:13px; background:#fff; padding:15px;">
+              <div style="font-size:16px; font-weight:700; margin-bottom:11px;">What happens next</div>
+              <div style="display:flex; flex-direction:column; gap:11px;">
+                <div style="display:flex; gap:10px;"><span style="width:22px;height:22px;border-radius:50%;background:#efeaff;border:2px solid #cdbcff;color:#7a5af0;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">1</span><div style="font-size:14px; color:#6b675f;">VAs see your task &amp; send proposals</div></div>
+                <div style="display:flex; gap:10px;"><span style="width:22px;height:22px;border-radius:50%;background:#efeaff;border:2px solid #cdbcff;color:#7a5af0;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">2</span><div style="font-size:14px; color:#6b675f;">You compare price, timeline &amp; rating</div></div>
+                <div style="display:flex; gap:10px;"><span style="width:22px;height:22px;border-radius:50%;background:#efeaff;border:2px solid #cdbcff;color:#7a5af0;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">3</span><div style="font-size:14px; color:#6b675f;">Accept one — work begins</div></div>
+              </div>
+            </div>
+            <div style="border:2px solid #e7cf94; border-radius:13px; background:#fdf8ec; padding:15px;">
+              <div style="display:flex; align-items:center; gap:8px; margin-bottom:9px;"><span style="color:#c89b2c; font-size:16px;">✦</span><div style="font-size:15px; font-weight:700;">AI assist</div></div>
+              <div style="font-family:'Gaegu',cursive; font-size:14px; color:#b08620; line-height:1.5;">Not sure how to scope it? Let AI draft a clear title, description &amp; suggested budget from a few words.</div>
+              <div style="margin-top:11px; text-align:center; padding:8px; background:#fff; border:2px solid #e7cf94; border-radius:9px; font-size:14px; color:#b08620; font-weight:700;">Help me write it</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p style="margin:14px 2px 0; font-family:'Gaegu',cursive; font-size:16px; color:#c0392b; line-height:1.5;">△ notes: exact fields from the blueprint. Two-column: form + a "what happens next" rail so first-time clients understand the proposal model. The one place AI shows up on the client side — an optional "help me scope it" assist (uses the same provider abstraction). Save draft ↔ the draft task status.</p>
+    </section>
+    </sc-if>
+
+    <!-- ============ TASK DETAIL ============ -->
+    <sc-if value="{{ isTaskDetail }}">
+    <section>
+      <div style="display:flex; align-items:baseline; gap:12px; margin-bottom:18px; flex-wrap:wrap;">
+        <h2 style="margin:0; font-size:24px; font-weight:700;">/tasks/:id</h2>
+        <span style="font-family:'Gaegu',cursive; color:#857f74; font-size:16px;">status · proposals · comments · files · delivery · rating</span>
+      </div>
+      <div style="border:3px solid #2b2b2b; border-radius:16px; background:#fff; box-shadow:6px 8px 0 rgba(43,43,43,.10); overflow:hidden;">
+        <div style="display:flex; gap:7px; padding:10px 14px; border-bottom:2px solid #2b2b2b; background:#f3f1ec; align-items:center;">
+          <span style="width:11px;height:11px;border-radius:50%;border:1.5px solid #2b2b2b;"></span><span style="width:11px;height:11px;border-radius:50%;border:1.5px solid #2b2b2b;"></span><span style="width:11px;height:11px;border-radius:50%;border:1.5px solid #2b2b2b;"></span>
+          <span style="margin-left:10px; font-family:'Gaegu',cursive; font-size:14px; color:#857f74;">client.automagic.dev/tasks/317</span>
+        </div>
+        <!-- header -->
+        <div style="padding:16px 22px; border-bottom:2px solid #e3dfd6; display:flex; align-items:center; gap:10px; background:#fdfdfc;">
+          <span style="font-family:'Gaegu',cursive; font-size:14px; color:#7a5af0;">← Tasks</span>
+          <span style="font-family:'Gaegu',cursive; font-size:14px; color:#a8a399;">/ #317</span>
+        </div>
+        <div style="display:flex; min-height:560px; background:#fdfdfc;">
+          <!-- center -->
+          <div style="flex:1; min-width:0; padding:22px; display:flex; flex-direction:column; gap:18px;">
+            <div style="display:flex; align-items:flex-start; gap:14px;">
+              <div style="flex:1;"><div style="font-size:22px; font-weight:700;">Logo refresh + brand one-pager</div><div style="font-size:15px; color:#857f74; margin-top:6px;">Design · Remote · posted 2 days ago</div></div>
+              <span style="font-size:13px; padding:5px 12px; background:#fdf8ec; color:#b08620; border:2px solid #e7cf94; border-radius:20px; font-weight:700;">collecting proposals</span>
+            </div>
+            <!-- status timeline -->
+            <div style="display:flex; align-items:center; gap:0;">
+              <div style="display:flex; flex-direction:column; align-items:center; gap:5px;"><span style="width:18px;height:18px;border-radius:50%;background:#7a5af0;"></span><span style="font-size:11px; color:#7a5af0; font-weight:700;">Posted</span></div>
+              <div style="flex:1; height:3px; background:#7a5af0; margin:0 4px; margin-bottom:18px;"></div>
+              <div style="display:flex; flex-direction:column; align-items:center; gap:5px;"><span style="width:18px;height:18px;border-radius:50%;background:#7a5af0;"></span><span style="font-size:11px; color:#7a5af0; font-weight:700;">Proposals</span></div>
+              <div style="flex:1; height:3px; background:#e3dfd6; margin:0 4px; margin-bottom:18px;"></div>
+              <div style="display:flex; flex-direction:column; align-items:center; gap:5px;"><span style="width:18px;height:18px;border-radius:50%;border:2px solid #cfcabf;background:#fff;"></span><span style="font-size:11px; color:#a8a399;">Assigned</span></div>
+              <div style="flex:1; height:3px; background:#e3dfd6; margin:0 4px; margin-bottom:18px;"></div>
+              <div style="display:flex; flex-direction:column; align-items:center; gap:5px;"><span style="width:18px;height:18px;border-radius:50%;border:2px solid #cfcabf;background:#fff;"></span><span style="font-size:11px; color:#a8a399;">Delivered</span></div>
+              <div style="flex:1; height:3px; background:#e3dfd6; margin:0 4px; margin-bottom:18px;"></div>
+              <div style="display:flex; flex-direction:column; align-items:center; gap:5px;"><span style="width:18px;height:18px;border-radius:50%;border:2px solid #cfcabf;background:#fff;"></span><span style="font-size:11px; color:#a8a399;">Rated</span></div>
+            </div>
+            <!-- tabs -->
+            <div style="display:flex; gap:18px; border-bottom:2px solid #e3dfd6;">
+              <span style="font-size:15px; font-weight:700; border-bottom:3px solid #7a5af0; padding:0 0 8px;">Proposals <span style="background:#7a5af0; color:#fff; border-radius:8px; padding:1px 7px; font-size:12px;">5</span></span>
+              <span style="font-size:15px; color:#857f74; padding:0 0 8px;">Brief &amp; files</span>
+              <span style="font-size:15px; color:#857f74; padding:0 0 8px;">Comments</span>
+              <span style="font-size:15px; color:#857f74; padding:0 0 8px;">Delivery</span>
+            </div>
+            <!-- proposals list -->
+            <div style="display:flex; flex-direction:column; gap:11px;">
+              <div style="border:2px solid #cdbcff; border-radius:13px; background:#faf8ff; padding:14px; display:flex; gap:13px; align-items:center;">
+                <div style="width:44px;height:44px;border-radius:50%;background:repeating-linear-gradient(135deg,#ece9e2,#ece9e2 5px,#f6f4ef 5px,#f6f4ef 10px);border:2px solid #b9b5ab;flex-shrink:0;"></div>
+                <div style="flex:1; min-width:0;"><div style="display:flex; align-items:center; gap:8px;"><span style="font-size:15px; font-weight:700;">Maria D.</span><span style="font-size:12px; color:#c89b2c;">★ 4.9</span><span style="font-size:11px; background:#eef6ef; color:#3f7d53; border:1.5px solid #b9d8c2; border-radius:8px; padding:1px 7px;">top match</span></div><div style="height:8px; width:80%; background:#eceae3; border-radius:4px; margin-top:7px;"></div></div>
+                <div style="text-align:right;"><div style="font-size:16px; font-weight:700;">$170</div><div style="font-size:12px; color:#857f74;">3 days</div></div>
+                <div style="padding:8px 16px; background:#7a5af0; color:#fff; border:2.5px solid #2b2b2b; border-radius:9px; font-size:14px; font-weight:700; box-shadow:2px 2px 0 rgba(43,43,43,.2);">Accept</div>
+              </div>
+              <div style="border:2px solid #e3dfd6; border-radius:13px; background:#fff; padding:14px; display:flex; gap:13px; align-items:center;">
+                <div style="width:44px;height:44px;border-radius:50%;background:repeating-linear-gradient(135deg,#ece9e2,#ece9e2 5px,#f6f4ef 5px,#f6f4ef 10px);border:2px solid #b9b5ab;flex-shrink:0;"></div>
+                <div style="flex:1; min-width:0;"><div style="display:flex; align-items:center; gap:8px;"><span style="font-size:15px; font-weight:700;">Cristi Ș.</span><span style="font-size:12px; color:#c89b2c;">★ 5.0</span></div><div style="height:8px; width:70%; background:#eceae3; border-radius:4px; margin-top:7px;"></div></div>
+                <div style="text-align:right;"><div style="font-size:16px; font-weight:700;">$200</div><div style="font-size:12px; color:#857f74;">2 days</div></div>
+                <div style="padding:8px 16px; border:2px solid #cfcabf; border-radius:9px; font-size:14px; color:#6b675f;">View</div>
+              </div>
+              <div style="border:2px solid #e3dfd6; border-radius:13px; background:#fff; padding:14px; display:flex; gap:13px; align-items:center; opacity:.8;">
+                <div style="width:44px;height:44px;border-radius:50%;background:repeating-linear-gradient(135deg,#ece9e2,#ece9e2 5px,#f6f4ef 5px,#f6f4ef 10px);border:2px solid #b9b5ab;flex-shrink:0;"></div>
+                <div style="flex:1; min-width:0;"><div style="display:flex; align-items:center; gap:8px;"><span style="font-size:15px; font-weight:700;">Jon P.</span><span style="font-size:12px; color:#c89b2c;">★ 4.6</span></div><div style="height:8px; width:60%; background:#eceae3; border-radius:4px; margin-top:7px;"></div></div>
+                <div style="text-align:right;"><div style="font-size:16px; font-weight:700;">$140</div><div style="font-size:12px; color:#857f74;">5 days</div></div>
+                <div style="padding:8px 16px; border:2px solid #cfcabf; border-radius:9px; font-size:14px; color:#6b675f;">View</div>
+              </div>
+              <div style="text-align:center; font-family:'Gaegu',cursive; font-size:14px; color:#857f74; padding-top:2px;">+ 2 more proposals</div>
+            </div>
+          </div>
+          <!-- right -->
+          <div style="width:280px; border-left:2px solid #e3dfd6; padding:20px; display:flex; flex-direction:column; gap:16px;">
+            <div style="border:2px solid #cfcabf; border-radius:13px; background:#fff; padding:15px;">
+              <div style="font-size:16px; font-weight:700; margin-bottom:11px;">Task details</div>
+              <div style="display:flex; justify-content:space-between; padding:7px 0; border-bottom:1.5px dashed #e3dfd6;"><span style="font-size:14px; color:#857f74;">Budget</span><span style="font-size:14px; font-weight:700;">$140–200</span></div>
+              <div style="display:flex; justify-content:space-between; padding:7px 0; border-bottom:1.5px dashed #e3dfd6;"><span style="font-size:14px; color:#857f74;">Category</span><span style="font-size:14px; font-weight:700;">Design</span></div>
+              <div style="display:flex; justify-content:space-between; padding:7px 0;"><span style="font-size:14px; color:#857f74;">Deadline</span><span style="font-size:14px; font-weight:700;">Jun 16</span></div>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:9px;">
+              <div style="text-align:center; padding:10px; border:2px solid #cfcabf; border-radius:10px; font-size:14px; color:#6b675f;">Edit task</div>
+              <div style="text-align:center; padding:10px; border:2px solid #e8b4b4; color:#c0392b; border-radius:10px; font-size:14px;">Cancel task</div>
+            </div>
+            <div style="border:2px dashed #b9b5ab; border-radius:11px; padding:13px; font-family:'Gaegu',cursive; font-size:13px; color:#857f74; line-height:1.5;">After delivery, this rail becomes <strong style="color:#2b2b2b;">rate &amp; review the VA</strong> + release payment.</div>
+          </div>
+        </div>
+      </div>
+      <p style="margin:14px 2px 0; font-family:'Gaegu',cursive; font-size:16px; color:#c0392b; line-height:1.5;">△ notes: the decision screen. Status timeline up top, then proposals sorted with a "top match" highlighted — each shows rating + price + timeline + Accept. After accept, tabs shift to Comments/Files/Delivery and the right rail turns into rate-the-VA + release payment (maps to task_proposals → assigned → rating).</p>
+    </section>
+    </sc-if>
+
+    <!-- ============ FIND VAs ============ -->
+    <sc-if value="{{ isVas }}">
+    <section>
+      <div style="display:flex; align-items:baseline; gap:12px; margin-bottom:18px; flex-wrap:wrap;">
+        <h2 style="margin:0; font-size:24px; font-weight:700;">/virtualassistants</h2>
+        <span style="font-family:'Gaegu',cursive; color:#857f74; font-size:16px;">browse VA profiles · ratings · rates · invite to a task</span>
+      </div>
+      <div style="border:3px solid #2b2b2b; border-radius:16px; background:#fff; box-shadow:6px 8px 0 rgba(43,43,43,.10); overflow:hidden;">
+        <div style="display:flex; gap:7px; padding:10px 14px; border-bottom:2px solid #2b2b2b; background:#f3f1ec; align-items:center;">
+          <span style="width:11px;height:11px;border-radius:50%;border:1.5px solid #2b2b2b;"></span><span style="width:11px;height:11px;border-radius:50%;border:1.5px solid #2b2b2b;"></span><span style="width:11px;height:11px;border-radius:50%;border:1.5px solid #2b2b2b;"></span>
+          <span style="margin-left:10px; font-family:'Gaegu',cursive; font-size:14px; color:#857f74;">client.automagic.dev/virtualassistants</span>
+        </div>
+        <div style="display:flex; min-height:580px;">
+          <!-- sidebar -->
+          <div style="width:204px; border-right:2px solid #2b2b2b; background:#faf9f6; padding:16px 12px; display:flex; flex-direction:column;">
+            <div style="display:flex; align-items:center; gap:8px; padding:0 4px 16px;"><span style="color:#7a5af0; font-size:18px;">◆</span><span style="font-weight:700; font-size:19px;">AutoMagic</span></div>
+            <div style="display:flex; flex-direction:column; gap:3px;">
+              <div style="display:flex; align-items:center; gap:9px; padding:8px 10px; border-radius:9px;"><span style="width:16px;height:16px;border-radius:4px;border:2px solid #b9b5ab;"></span><span style="font-size:16px; color:#6b675f;">Dashboard</span></div>
+              <div style="display:flex; align-items:center; gap:9px; padding:8px 10px; border-radius:9px;"><span style="width:16px;height:16px;border-radius:4px;border:2px solid #b9b5ab;"></span><span style="font-size:16px; color:#6b675f;">Tasks</span></div>
+              <div style="display:flex; align-items:center; gap:9px; padding:8px 10px; border-radius:9px; background:#efeaff; border-left:3px solid #7a5af0;"><span style="width:16px;height:16px;border-radius:4px;background:#7a5af0;"></span><span style="font-size:16px; font-weight:700;">Find VAs</span></div>
+              <div style="display:flex; align-items:center; gap:9px; padding:8px 10px; border-radius:9px;"><span style="width:16px;height:16px;border-radius:4px;border:2px solid #b9b5ab;"></span><span style="font-size:16px; color:#6b675f;">Chat</span></div>
+              <div style="display:flex; align-items:center; gap:9px; padding:8px 10px; border-radius:9px;"><span style="width:16px;height:16px;border-radius:4px;border:2px solid #b9b5ab;"></span><span style="font-size:16px; color:#6b675f;">Calendar</span></div>
+              <div style="display:flex; align-items:center; gap:9px; padding:8px 10px; border-radius:9px;"><span style="width:16px;height:16px;border-radius:4px;border:2px solid #b9b5ab;"></span><span style="font-size:16px; color:#6b675f;">Notifications</span></div>
+              <div style="display:flex; align-items:center; gap:9px; padding:8px 10px; border-radius:9px;"><span style="width:16px;height:16px;border-radius:4px;border:2px solid #b9b5ab;"></span><span style="font-size:16px; color:#6b675f;">Profile</span></div>
+            </div>
+            <div style="margin-top:auto; display:flex; align-items:center; gap:9px; padding:9px; border:2px dashed #b9b5ab; border-radius:11px;"><div style="width:30px;height:30px;border-radius:50%;background:repeating-linear-gradient(135deg,#ece9e2,#ece9e2 5px,#f6f4ef 5px,#f6f4ef 10px);border:2px solid #b9b5ab;"></div><div><div style="font-size:14px; font-weight:700;">Acme Co</div><div style="font-size:12px; color:#857f74;">client</div></div></div>
+          </div>
+          <!-- main -->
+          <div style="flex:1; display:flex; flex-direction:column; min-width:0; background:#fdfdfc;">
+            <div style="height:52px; border-bottom:2px solid #2b2b2b; display:flex; align-items:center; gap:12px; padding:0 18px;">
+              <div style="font-size:20px; font-weight:700;">Find a VA</div>
+              <span style="font-family:'Gaegu',cursive; font-size:14px; color:#857f74;">14 available</span>
+              <div style="margin-left:auto; flex:1; max-width:280px; height:32px; border:2px solid #cfcabf; border-radius:9px; display:flex; align-items:center; padding:0 10px; color:#a8a399; font-family:'Gaegu',cursive; font-size:14px;">Search by skill…</div>
+            </div>
+            <!-- filter chips -->
+            <div style="padding:12px 18px; border-bottom:2px dashed #e3dfd6; display:flex; gap:8px; flex-wrap:wrap; align-items:center;">
+              <span style="font-family:'Gaegu',cursive; font-size:14px; color:#857f74;">filter:</span>
+              <span style="font-size:13px; padding:4px 12px; border:2px solid #cdbcff; background:#f1ecff; color:#7a5af0; border-radius:20px;">Research ✕</span>
+              <span style="font-size:13px; padding:4px 12px; border:2px solid #cfcabf; border-radius:20px; color:#6b675f;">Skill ▾</span>
+              <span style="font-size:13px; padding:4px 12px; border:2px solid #cfcabf; border-radius:20px; color:#6b675f;">★ Rating ▾</span>
+              <span style="font-size:13px; padding:4px 12px; border:2px solid #cfcabf; border-radius:20px; color:#6b675f;">Rate ▾</span>
+              <span style="font-size:13px; padding:4px 12px; border:2px solid #cfcabf; border-radius:20px; color:#6b675f;">Available now</span>
+            </div>
+            <!-- VA grid -->
+            <div style="flex:1; padding:18px; display:grid; grid-template-columns:repeat(3,1fr); gap:14px; align-content:start;">
+              <!-- card -->
+              <div style="border:2px solid #cdbcff; border-radius:14px; background:#faf8ff; padding:16px; display:flex; flex-direction:column; gap:10px;">
+                <div style="display:flex; gap:11px; align-items:center;"><div style="width:48px;height:48px;border-radius:50%;background:repeating-linear-gradient(135deg,#ece9e2,#ece9e2 5px,#f6f4ef 5px,#f6f4ef 10px);border:2px solid #b9b5ab;"></div><div><div style="font-size:16px; font-weight:700;">Cristi Ș.</div><div style="font-size:12px; color:#c89b2c;">★ 5.0 · 48 tasks</div></div></div>
+                <div style="display:flex; gap:6px; flex-wrap:wrap;"><span style="font-size:11px; padding:2px 9px; background:#fff; border:1.5px solid #cdbcff; color:#7a5af0; border-radius:8px;">Research</span><span style="font-size:11px; padding:2px 9px; background:#fff; border:1.5px solid #cdbcff; color:#7a5af0; border-radius:8px;">Automation</span><span style="font-size:11px; padding:2px 9px; background:#fff; border:1.5px solid #cdbcff; color:#7a5af0; border-radius:8px;">CRM</span></div>
+                <div style="display:flex; align-items:center; gap:8px; margin-top:auto; padding-top:6px;"><span style="font-size:14px; font-weight:700;">$500/wk</span><span style="margin-left:auto; padding:7px 14px; background:#7a5af0; color:#fff; border:2px solid #2b2b2b; border-radius:9px; font-size:13px; font-weight:700;">Invite</span></div>
+              </div>
+              <div style="border:2px solid #e3dfd6; border-radius:14px; background:#fff; padding:16px; display:flex; flex-direction:column; gap:10px;">
+                <div style="display:flex; gap:11px; align-items:center;"><div style="width:48px;height:48px;border-radius:50%;background:repeating-linear-gradient(135deg,#ece9e2,#ece9e2 5px,#f6f4ef 5px,#f6f4ef 10px);border:2px solid #b9b5ab;"></div><div><div style="font-size:16px; font-weight:700;">Maria D.</div><div style="font-size:12px; color:#c89b2c;">★ 4.9 · 31 tasks</div></div></div>
+                <div style="display:flex; gap:6px; flex-wrap:wrap;"><span style="font-size:11px; padding:2px 9px; background:#f3f1ec; border:1.5px solid #d9d5cc; color:#6b675f; border-radius:8px;">Research</span><span style="font-size:11px; padding:2px 9px; background:#f3f1ec; border:1.5px solid #d9d5cc; color:#6b675f; border-radius:8px;">Reporting</span></div>
+                <div style="display:flex; align-items:center; gap:8px; margin-top:auto; padding-top:6px;"><span style="font-size:14px; font-weight:700;">$22/hr</span><span style="margin-left:auto; padding:7px 14px; border:2px solid #cfcabf; border-radius:9px; font-size:13px; color:#6b675f;">Invite</span></div>
+              </div>
+              <div style="border:2px solid #e3dfd6; border-radius:14px; background:#fff; padding:16px; display:flex; flex-direction:column; gap:10px;">
+                <div style="display:flex; gap:11px; align-items:center;"><div style="width:48px;height:48px;border-radius:50%;background:repeating-linear-gradient(135deg,#ece9e2,#ece9e2 5px,#f6f4ef 5px,#f6f4ef 10px);border:2px solid #b9b5ab;"></div><div><div style="font-size:16px; font-weight:700;">Jon P.</div><div style="font-size:12px; color:#c89b2c;">★ 4.6 · 19 tasks</div></div></div>
+                <div style="display:flex; gap:6px; flex-wrap:wrap;"><span style="font-size:11px; padding:2px 9px; background:#f3f1ec; border:1.5px solid #d9d5cc; color:#6b675f; border-radius:8px;">Ecommerce</span><span style="font-size:11px; padding:2px 9px; background:#f3f1ec; border:1.5px solid #d9d5cc; color:#6b675f; border-radius:8px;">Support</span></div>
+                <div style="display:flex; align-items:center; gap:8px; margin-top:auto; padding-top:6px;"><span style="font-size:14px; font-weight:700;">$18/hr</span><span style="margin-left:auto; padding:7px 14px; border:2px solid #cfcabf; border-radius:9px; font-size:13px; color:#6b675f;">Invite</span></div>
+              </div>
+              <div style="border:2px solid #e3dfd6; border-radius:14px; background:#fff; padding:16px; display:flex; flex-direction:column; gap:10px;">
+                <div style="display:flex; gap:11px; align-items:center;"><div style="width:48px;height:48px;border-radius:50%;background:repeating-linear-gradient(135deg,#ece9e2,#ece9e2 5px,#f6f4ef 5px,#f6f4ef 10px);border:2px solid #b9b5ab;"></div><div><div style="font-size:16px; font-weight:700;">Ana V.</div><div style="font-size:12px; color:#c89b2c;">★ 4.8 · 27 tasks</div></div></div>
+                <div style="display:flex; gap:6px; flex-wrap:wrap;"><span style="font-size:11px; padding:2px 9px; background:#f3f1ec; border:1.5px solid #d9d5cc; color:#6b675f; border-radius:8px;">Inbox</span><span style="font-size:11px; padding:2px 9px; background:#f3f1ec; border:1.5px solid #d9d5cc; color:#6b675f; border-radius:8px;">Calendar</span></div>
+                <div style="display:flex; align-items:center; gap:8px; margin-top:auto; padding-top:6px;"><span style="font-size:14px; font-weight:700;">$20/hr</span><span style="margin-left:auto; padding:7px 14px; border:2px solid #cfcabf; border-radius:9px; font-size:13px; color:#6b675f;">Invite</span></div>
+              </div>
+              <div style="border:2px solid #e3dfd6; border-radius:14px; background:#fff; padding:16px; display:flex; flex-direction:column; gap:10px;">
+                <div style="display:flex; gap:11px; align-items:center;"><div style="width:48px;height:48px;border-radius:50%;background:repeating-linear-gradient(135deg,#ece9e2,#ece9e2 5px,#f6f4ef 5px,#f6f4ef 10px);border:2px solid #b9b5ab;"></div><div><div style="font-size:16px; font-weight:700;">Sam K.</div><div style="font-size:12px; color:#c89b2c;">★ 4.7 · 22 tasks</div></div></div>
+                <div style="display:flex; gap:6px; flex-wrap:wrap;"><span style="font-size:11px; padding:2px 9px; background:#f3f1ec; border:1.5px solid #d9d5cc; color:#6b675f; border-radius:8px;">CRM</span><span style="font-size:11px; padding:2px 9px; background:#f3f1ec; border:1.5px solid #d9d5cc; color:#6b675f; border-radius:8px;">Sheets</span></div>
+                <div style="display:flex; align-items:center; gap:8px; margin-top:auto; padding-top:6px;"><span style="font-size:14px; font-weight:700;">$24/hr</span><span style="margin-left:auto; padding:7px 14px; border:2px solid #cfcabf; border-radius:9px; font-size:13px; color:#6b675f;">Invite</span></div>
+              </div>
+              <div style="border:2px dashed #cfcabf; border-radius:14px; background:#fbfaf7; padding:16px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px; min-height:150px; color:#a8a399; font-family:'Gaegu',cursive;"><span style="font-size:26px;">+</span><span style="font-size:14px;">post a task instead</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p style="margin:14px 2px 0; font-family:'Gaegu',cursive; font-size:16px; color:#c0392b; line-height:1.5;">△ notes: marketplace browse — invite a specific VA to bid (vs. posting open). Cards lead with rating + tasks-completed for trust. In solo-mode v1 the pool is basically Cristi, so this can stay simple now and grow when more VAs join (the multi-user direction in the blueprint).</p>
+    </section>
+    </sc-if>
+
+    <!-- MORETABS -->
+
+    <footer style="margin-top:40px; text-align:center; font-family:'Gaegu',cursive; font-size:15px; color:#9a958a;">AutoMagic client portal · structural wireframes · switch screens with the tabs above ◆</footer>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { tab: 'dashboard' };
+  renderVals() {
+    const defs = [
+      { id: 'dashboard', label: 'Dashboard' },
+      { id: 'tasks', label: 'Tasks' },
+      { id: 'newtask', label: 'New Task' },
+      { id: 'taskdetail', label: 'Task Detail' },
+      { id: 'vas', label: 'Find VAs' },
+      { id: 'chat', label: 'Chat' },
+      { id: 'calendar', label: 'Calendar' },
+      { id: 'notifications', label: 'Notifications' },
+      { id: 'profile', label: 'Profile' },
+    ];
+    const active = this.state.tab;
+    const tabs = defs.map(d => {
+      const on = d.id === active;
+      return {
+        label: d.label,
+        onClick: () => this.setState({ tab: d.id }),
+        style: [
+          'font-family:Kalam,cursive', 'font-size:16px', 'cursor:pointer',
+          'padding:7px 15px 9px', 'border-radius:11px 9px 12px 8px/8px 12px 9px 11px',
+          'border:2.5px solid #2b2b2b',
+          on ? 'background:#7a5af0' : 'background:#fff',
+          on ? 'color:#fff' : 'color:#2b2b2b',
+          on ? 'box-shadow:2px 3px 0 rgba(43,43,43,.25)' : 'box-shadow:2px 3px 0 rgba(43,43,43,.10)',
+          on ? 'font-weight:700' : 'font-weight:400',
+        ].join(';'),
+      };
+    });
+    return {
+      tabs,
+      isDashboard: active === 'dashboard',
+      isTasks: active === 'tasks',
+      isNewTask: active === 'newtask',
+      isTaskDetail: active === 'taskdetail',
+      isVas: active === 'vas',
+      isChat: active === 'chat',
+      isCalendar: active === 'calendar',
+      isNotifications: active === 'notifications',
+      isProfile: active === 'profile',
+    };
+  }
+}
+</script>
+</body>
+</html>

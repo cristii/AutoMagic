@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&family=Gaegu:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body { background: #e7e3da; font-family: 'Kalam', cursive; color: #2b2b2b; -webkit-font-smoothing: antialiased; }
+  ::selection { background: #cdbcff; }
+  @keyframes twinkle { 0%,100% { opacity: .4; transform: scale(.85); } 50% { opacity: 1; transform: scale(1.1); } }
+</style>
+</helmet>
+<div style="min-height:100vh; padding:34px 30px 80px;">
+  <div style="max-width:1320px; margin:0 auto;">
+
+    <header style="display:flex; align-items:flex-end; justify-content:space-between; gap:24px; flex-wrap:wrap; margin-bottom:6px;">
+      <div>
+        <div style="display:flex; align-items:center; gap:10px;">
+          <span style="font-size:26px; color:#c89b2c; animation:twinkle 2.6s ease-in-out infinite; display:inline-block;">✦</span>
+          <h1 style="margin:0; font-size:34px; font-weight:700; letter-spacing:.5px;">AutoMagic · Studio wireframes</h1>
+        </div>
+        <p style="margin:6px 0 0; font-size:18px; color:#6b675f;">VA workspace + AI agents — Cristi's cockpit. Low-fi structure sketches, desktop-first.</p>
+      </div>
+      <div style="font-family:'Gaegu',cursive; font-size:15px; color:#857f74; text-align:right; line-height:1.5;">
+        <div style="border:2px dashed #b9b5ab; border-radius:10px; padding:7px 12px; background:#fbfaf7;">working draft · v1<br>not visual design — flow + layout only</div>
+      </div>
+    </header>
+
+    <!-- TAB BAR -->
+    <nav style="display:flex; flex-wrap:wrap; gap:8px; margin:22px 0 26px; border-bottom:2.5px solid #2b2b2b; padding-bottom:14px;">
+      <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="7">
+        <button onClick="{{ t.onClick }}" style="{{ t.style }}">{{ t.label }}</button>
+      </sc-for>
+    </nav>
+
+    <!-- ============ SHELL + NAV ============ -->
+    <sc-if value="{{ isShell }}" hint-placeholder-val="{{ true }}">
+    <section>
+      <div style="display:flex; align-items:baseline; gap:12px; margin-bottom:4px;">
+        <h2 style="margin:0; font-size:24px; font-weight:700;">Shell &amp; navigation — 3 directions</h2>
+        <span style="font-family:'Gaegu',cursive; color:#857f74; font-size:16px;">studio has ~8 sections, so nav has to scale</span>
+      </div>
+      <p style="margin:2px 0 24px; font-family:'Gaegu',cursive; color:#c0392b; font-size:16px;">↓ pick a shell first — every screen below assumes one. I'm leaning toward A.</p>
+
+      <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:22px; align-items:start;">
+
+        <!-- Variant A: sidebar + top bar -->
+        <div>
+          <div style="position:relative; border:3px solid #2b2b2b; border-radius:16px; background:#fff; box-shadow:5px 7px 0 rgba(43,43,43,.10); overflow:hidden;">
+            <div style="position:absolute; top:-10px; right:-2px; background:#7a5af0; color:#fff; font-family:'Gaegu',cursive; font-size:13px; padding:3px 10px 6px; border-radius:0 0 0 10px; transform:rotate(2deg); box-shadow:2px 2px 0 rgba(43,43,43,.2);">lean toward this ✓</div>
+            <div style="display:flex; gap:6px; padding:9px 12px; border-bottom:2px solid #2b2b2b; background:#f3f1ec;">
+              <span style="width:10px;height:10px;border-radius:50%;border:1.5px solid #2b2b2b;display:inline-block;"></span>
+              <span style="width:10px;height:10px;border-radius:50%;border:1.5px solid #2b2b2b;display:inline-block;"></span>
+              <span style="width:10px;height:10px;border-radius:50%;border:1.5px solid #2b2b2b;display:inline-block;"></span>
+            </div>
+            <div style="display:flex; height:236px;">
+              <div style="width:78px; border-right:2px solid #2b2b2b; background:#faf9f6; padding:10px 8px; display:flex; flex-direction:column; gap:9px;">
+                <div style="height:14px; background:#7a5af0; border-radius:5px; opacity:.85;"></div>
+                <div style="height:9px; background:#cdbcff; border-radius:5px;"></div>
+                <div style="height:9px; background:#d9d5cc; border-radius:5px;"></div>
+                <div style="height:9px; background:#d9d5cc; border-radius:5px;"></div>
+                <div style="height:9px; background:#d9d5cc; border-radius:5px;"></div>
+                <div style="height:9px; background:#d9d5cc; border-radius:5px;"></div>
+                <div style="margin-top:auto; height:24px; border:2px dashed #b9b5ab; border-radius:8px;"></div>
+              </div>
+              <div style="flex:1; display:flex; flex-direction:column;">
+                <div style="height:34px; border-bottom:2px solid #2b2b2b; display:flex; align-items:center; gap:8px; padding:0 10px;">
+                  <div style="flex:1; height:14px; border:1.5px solid #c3bfb5; border-radius:7px;"></div>
+                  <div style="width:14px;height:14px;border:1.5px solid #2b2b2b;border-radius:50%;"></div>
+                  <div style="width:18px;height:18px;border-radius:50%;background:repeating-linear-gradient(135deg,#ece9e2,#ece9e2 4px,#f6f4ef 4px,#f6f4ef 8px);border:1.5px solid #b9b5ab;"></div>
+                </div>
+                <div style="flex:1; padding:12px; display:flex; flex-direction:column; gap:9px;">
+                  <div style="height:16px; width:55%; background:#d9d5cc; border-radius:5px;"></div>
+                  <div style="display:flex; gap:8px;">
+                    <div style="flex:1;height:38px;border:2px solid #cfcabf;border-radius:8px;"></div>
+                    <div style="flex:1;height:38px;border:2px solid #cfcabf;border-radius:8px;"></div>
+                    <div style="flex:1;height:38px;border:2px solid #cfcabf;border-radius:8px;"></div>
+                  </div>
+                  <div style="flex:1;border:2px solid #cfcabf;border-radius:8px;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <h3 style="margin:14px 0 4px; font-size:19px;">A · Labeled sidebar + top bar</h3>
+          <p style="margin:0; font-family:'Gaegu',cursive; font-size:16px; color:#6b675f; line-height:1.5;">Blueprint default. Clearest for 8 destinations, room for labels &amp; counts. Costs ~210px width.</p>
+        </div>
+
+        <!-- Variant B: icon rail + contextual subnav -->
+        <div>
+          <div style="border:3px solid #2b2b2b; border-radius:16px; background:#fff; box-shadow:5px 7px 0 rgba(43,43,43,.10); overflow:hidden;">
+            <div style="display:flex; gap:6px; padding:9px 12px; border-bottom:2px solid #2b2b2b; background:#f3f1ec;">
+              <span style="width:10px;height:10px;border-radius:50%;border:1.5px solid #2b2b2b;display:inline-block;"></span>
+              <span style="width:10px;height:10px;border-radius:50%;border:1.5px solid #2b2b2b;display:inline-block;"></span>
+              <span style="width:10px;height:10px;border-radius:50%;border:1.5px solid #2b2b2b;display:inline-block;"></span>
+            </div>
+            <div style="display:flex; height:236px;">
+              <div style="width:40px; border-right:2px solid #2b2b2b; background:#2b2b2b; padding:10px 0; display:flex; flex-direction:column; align-items:center; gap:11px;">
+                <div style="width:18px;height:18px;border-radius:6px;background:#c89b2c;"></div>
+                <div style="width:18px;height:18px;border-radius:6px;background:#7a5af0;"></div>
+                <div style="width:18px;height:18px;border-radius:6px;border:1.5px solid #888;"></div>
+                <div style="width:18px;height:18px;border-radius:6px;border:1.5px solid #888;"></div>
+                <div style="width:18px;height:18px;border-radius:6px;border:1.5px solid #888;"></div>
+              </div>
+              <div style="width:96px; border-right:2px solid #2b2b2b; background:#faf9f6; padding:10px 9px; display:flex; flex-direction:column; gap:8px;">
+                <div style="height:11px; width:70%; background:#d9d5cc; border-radius:5px;"></div>
+                <div style="height:9px; background:#cdbcff; border-radius:5px;"></div>
+                <div style="height:9px; background:#d9d5cc; border-radius:5px;"></div>
+                <div style="height:9px; background:#d9d5cc; border-radius:5px;"></div>
+              </div>
+              <div style="flex:1; display:flex; flex-direction:column;">
+                <div style="height:34px; border-bottom:2px solid #2b2b2b;"></div>
+                <div style="flex:1; padding:12px; display:flex; flex-direction:column; gap:9px;">
+                  <div style="height:16px; width:55%; background:#d9d5cc; border-radius:5px;"></div>
+                  <div style="flex:1;border:2px solid #cfcabf;border-radius:8px;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <h3 style="margin:14px 0 4px; font-size:19px;">B · Icon rail + contextual sub-nav</h3>
+          <p style="margin:0; font-family:'Gaegu',cursive; font-size:16px; color:#6b675f; line-height:1.5;">Saves space, scales to deep sections (Clients→tabs). Icons alone can be ambiguous — needs tooltips.</p>
+        </div>
+
+        <!-- Variant C: top nav + AI dock -->
+        <div>
+          <div style="border:3px solid #2b2b2b; border-radius:16px; background:#fff; box-shadow:5px 7px 0 rgba(43,43,43,.10); overflow:hidden;">
+            <div style="display:flex; gap:6px; padding:9px 12px; border-bottom:2px solid #2b2b2b; background:#f3f1ec;">
+              <span style="width:10px;height:10px;border-radius:50%;border:1.5px solid #2b2b2b;display:inline-block;"></span>
+              <span style="width:10px;height:10px;border-radius:50%;border:1.5px solid #2b2b2b;display:inline-block;"></span>
+              <span style="width:10px;height:10px;border-radius:50%;border:1.5px solid #2b2b2b;display:inline-block;"></span>
+            </div>
+            <div style="height:34px; border-bottom:2px solid #2b2b2b; display:flex; align-items:center; gap:7px; padding:0 10px;">
+              <div style="width:16px;height:16px;border-radius:5px;background:#7a5af0;"></div>
+              <div style="height:9px;width:34px;background:#cdbcff;border-radius:5px;"></div>
+              <div style="height:9px;width:30px;background:#d9d5cc;border-radius:5px;"></div>
+              <div style="height:9px;width:30px;background:#d9d5cc;border-radius:5px;"></div>
+              <div style="height:9px;width:30px;background:#d9d5cc;border-radius:5px;"></div>
+            </div>
+            <div style="display:flex; height:202px;">
+              <div style="flex:1; padding:12px; display:flex; flex-direction:column; gap:9px;">
+                <div style="height:16px; width:55%; background:#d9d5cc; border-radius:5px;"></div>
+                <div style="flex:1;border:2px solid #cfcabf;border-radius:8px;"></div>
+              </div>
+              <div style="width:88px; border-left:2px solid #c89b2c; background:#fdf8ec; padding:10px 9px; display:flex; flex-direction:column; gap:8px;">
+                <div style="display:flex;align-items:center;gap:5px;"><span style="color:#c89b2c;font-size:14px;">✦</span><div style="height:10px;width:40px;background:#e7cf94;border-radius:5px;"></div></div>
+                <div style="height:30px;border:2px solid #e0c28a;border-radius:8px;"></div>
+                <div style="height:30px;border:2px solid #e0c28a;border-radius:8px;"></div>
+              </div>
+            </div>
+          </div>
+          <h3 style="margin:14px 0 4px; font-size:19px;">C · Top nav + persistent AI dock</h3>
+          <p style="margin:0; font-family:'Gaegu',cursive; font-size:16px; color:#6b675f; line-height:1.5;">Pushes AI agents to always-on. Wider content, but horizontal nav caps out fast at 8 items.</p>
+        </div>
+
+      </div>
+
+      <div style="margin-top:26px; border:2px dashed #b9b5ab; border-radius:12px; background:#fbfaf7; padding:16px 18px; font-family:'Gaegu',cursive; font-size:16px; color:#6b675f; line-height:1.6;">
+        <strong style="font-family:'Kalam',cursive; color:#2b2b2b;">My take →</strong> Go <strong style="color:#7a5af0;">A</strong> for v1 (fastest to read, label-friendly), but borrow C's idea: let the AI agent panel dock on the right of task-heavy screens. Revisit B if section count grows past ~10.
+      </div>
+    </section>
+    </sc-if>
+
+    <!-- ============ DASHBOARD ============ -->
+    <sc-if value="{{ isDashboard }}">
+    <section>
+      <div style="display:flex; align-items:baseline; gap:12px; margin-bottom:18px; flex-wrap:wrap;">
+        <h2 style="margin:0; font-size:24px; font-weight:700;">/dashboard</h2>
+        <span style="font-family:'Gaegu',cursive; color:#857f74; font-size:16px;">income · completed tasks · pending payments · service fees · active clients</span>
+      </div>
+
+      <!-- WINDOW FRAME -->
+      <div style="border:3px solid #2b2b2b; border-radius:16px; background:#fff; box-shadow:6px 8px 0 rgba(43,43,43,.10); overflow:hidden;">
+        <div style="display:flex; gap:7px; padding:10px 14px; border-bottom:2px solid #2b2b2b; background:#f3f1ec; align-items:center;">
+          <span style="width:11px;height:11px;border-radius:50%;border:1.5px solid #2b2b2b;display:inline-block;"></span>
+          <span style="width:11px;height:11px;border-radius:50%;border:1.5px solid #2b2b2b;display:inline-block;"></span>
+          <span style="width:11px;height:11px;border-radius:50%;border:1.5px solid #2b2b2b;display:inline-block;"></span>
+          <span style="margin-left:10px; font-family:'Gaegu',cursive; font-size:14px; color:#857f74;">studio.automagic.dev/dashboard</span>
+        </div>
+        <div style="display:flex; min-height:560px;">
+
+          <!-- SIDEBAR -->
+          <div style="width:204px; border-right:2px solid #2b2b2b; background:#faf9f6; padding:16px 12px; display:flex; flex-direction:column;">
+            <div style="display:flex; align-items:center; gap:8px; padding:0 4px 16px;">
+              <span style="color:#c89b2c; font-size:20px;">✦</span>
+              <span style="font-weight:700; font-size:19px;">AutoMagic</span>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:3px;">
+              <div style="display:flex; align-items:center; gap:9px; padding:8px 10px; border-radius:9px; background:#efeaff; border-left:3px solid #7a5af0;"><span style="width:16px;height:16px;border-radius:4px;background:#7a5af0;display:inline-block;"></span><span style="font-size:16px; font-weight:700;">Dashboard</span></div>
+              <div style="display:flex; align-items:center; gap:9px; padding:8px 10px; border-radius:9px;"><span style="width:16px;height:16px;border-radius:4px;border:2px solid #b9b5ab;display:inline-block;"></span><span style="font-size:16px; color:#6b675f;">Calendar</span></div>
+              <div style="display:flex; align-items:center; gap:9px; padding:8px 10px; border-radius:9px;"><span style="width:16px;height:16px;border-radius:4px;border:2px solid #b9b5ab;display:inline-block;"></span><span style="font-size:16px; color:#6b675f;">Chat</span><span style="margin-left:auto; font-size:12px; background:#c0392b; color:#fff; border-radius:8px; padding:1px 6px;">3</span></div>
+              <div style="display:flex; align-items:center; gap:9px; padding:8px 10px; border-radius:9px;"><span style="width:16px;height:16px;border-radius:4px;border:2px solid #b9b5ab;display:inline-block;"></span><span style="font-size:16px; color:#6b675f;">Notifications</span></div>
+              <div style="display:flex; align-items:center; gap:9px; padding:8px 10px; border-radius:9px;"><span style="width:16px;height:16px;border-radius:4px;border:2px solid #b9b5ab;display:inline-block;"></span><span style="font-size:16px; color:#6b675f;">Clients</span></div>
+              <div style="display:flex; align-items:center; gap:9px; padding:8px 10px; border-radius:9px;"><span style="width:16px;height:16px;border-radius:4px;border:2px solid #c89b2c;display:inline-block;"></span><span style="font-size:16px; color:#6b675f;">Agents</span><span style="margin-left:auto; color:#c89b2c; font-size:14px;">✦</span></div>
+              <div style="display:flex; align-items:center; gap:9px; padding:8px 10px; border-radius:9px;"><span style="width:16px;height:16px;border-radius:4px;border:2px solid #b9b5ab;display:inline-block;"></span><span style="font-size:16px; color:#6b675f;">Tasks</span></div>
+              <div style="display:flex; align-items:center; gap:9px; padding:8px 10px; border-radius:9px;"><span style="width:16px;height:16px;border-radius:4px;border:2px solid #b9b5ab;display:inline-block;"></span><span style="font-size:16px; color:#6b675f;">Profile</span></div>
+            </div>
+            <div style="margin-top:auto; display:flex; align-items:center; gap:9px; padding:9px; border:2px dashed #b9b5ab; border-radius:11px;">
+              <div style="width:30px;height:30px;border-radius:50%;background:repeating-linear-gradient(135deg,#ece9e2,#ece9e2 5px,#f6f4ef 5px,#f6f4ef 10px);border:2px solid #b9b5ab;"></div>
+              <div><div style="font-size:14px; font-weight:700;">Cristi Ș.</div><div style="font-size:12px; color:#857f74;">VA · studio</div></div>
+            </div>
+          </div>
+
+          <!-- MAIN -->
+          <div style="flex:1; display:flex; flex-direction:column; min-width:0;">
+            <!-- topbar -->
+            <div style="height:52px; border-bottom:2px solid #2b2b2b; display:flex; align-items:center; gap:12px; padding:0 18px;">
+              <div style="flex:1; max-width:340px; height:30px; border:2px solid #cfcabf; border-radius:9px; display:flex; align-items:center; padding:0 10px; color:#a8a399; font-family:'Gaegu',cursive; font-size:14px;">Search clients, tasks…</div>
+              <div style="margin-left:auto; width:22px;height:22px;border:2px solid #2b2b2b;border-radius:50%;"></div>
+              <div style="position:relative; width:22px;height:22px;border:2px solid #2b2b2b;border-radius:6px;"><span style="position:absolute;top:-5px;right:-5px;width:11px;height:11px;background:#c0392b;border-radius:50%;border:1.5px solid #fff;"></span></div>
+              <div style="width:32px;height:32px;border-radius:50%;background:repeating-linear-gradient(135deg,#ece9e2,#ece9e2 5px,#f6f4ef 5px,#f6f4ef 10px);border:2px solid #b9b5ab;"></div>
+            </div>
+
+            <!-- content -->
+            <div style="flex:1; padding:22px; display:flex; flex-direction:column; gap:18px; background:#fdfdfc;">
+              <div>
+                <div style="font-size:24px; font-weight:700;">Good morning, Cristi</div>
+                <div style="font-family:'Gaegu',cursive; font-size:16px; color:#857f74;">3 active clients · 2 tasks due today · 1 invoice awaiting payment</div>
+              </div>
+
+              <!-- KPI ROW -->
+              <div style="display:grid; grid-template-columns:repeat(5,1fr); gap:12px;">
+                <div style="border:2px solid #cfcabf; border-radius:13px; padding:12px; background:#fff;"><div style="font-family:'Gaegu',cursive; font-size:13px; color:#857f74; text-transform:uppercase; letter-spacing:.5px;">Income / wk</div><div style="height:26px; width:70%; background:#cdbcff; border-radius:6px; margin-top:8px;"></div><div style="height:8px; width:40%; background:#e3dfd6; border-radius:4px; margin-top:7px;"></div></div>
+                <div style="border:2px solid #cfcabf; border-radius:13px; padding:12px; background:#fff;"><div style="font-family:'Gaegu',cursive; font-size:13px; color:#857f74; text-transform:uppercase; letter-spacing:.5px;">Completed</div><div style="height:26px; width:50%; background:#d9d5cc; border-radius:6px; margin-top:8px;"></div><div style="height:8px; width:55%; background:#e3dfd6; border-radius:4px; margin-top:7px;"></div></div>
+                <div style="border:2px solid #cfcabf; border-radius:13px; padding:12px; background:#fff;"><div style="font-family:'Gaegu',cursive; font-size:13px; color:#857f74; text-transform:uppercase; letter-spacing:.5px;">Pending pay</div><div style="height:26px; width:60%; background:#d9d5cc; border-radius:6px; margin-top:8px;"></div><div style="height:8px; width:45%; background:#e3dfd6; border-radius:4px; margin-top:7px;"></div></div>
+                <div style="border:2px solid #cfcabf; border-radius:13px; padding:12px; background:#fff;"><div style="font-family:'Gaegu',cursive; font-size:13px; color:#857f74; text-transform:uppercase; letter-spacing:.5px;">Service fees</div><div style="height:26px; width:55%; background:#d9d5cc; border-radius:6px; margin-top:8px;"></div><div style="height:8px; width:50%; background:#e3dfd6; border-radius:4px; margin-top:7px;"></div></div>
+                <div style="border:2px solid #cfcabf; border-radius:13px; padding:12px; background:#fff;"><div style="font-family:'Gaegu',cursive; font-size:13px; color:#857f74; text-transform:uppercase; letter-spacing:.5px;">Active clients</div><div style="height:26px; width:35%; background:#d9d5cc; border-radius:6px; margin-top:8px;"></div><div style="height:8px; width:60%; background:#e3dfd6; border-radius:4px; margin-top:7px;"></div></div>
+              </div>
+
+              <!-- MAIN GRID -->
+              <div style="display:grid; grid-template-columns:1.7fr 1fr; gap:18px; align-items:start;">
+                <!-- left column -->
+                <div style="display:flex; flex-direction:column; gap:18px;">
+                  <div style="border:2px solid #cfcabf; border-radius:13px; background:#fff; padding:15px;">
+                    <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px;"><div style="font-size:18px; font-weight:700;">Today's focus</div><div style="font-family:'Gaegu',cursive; font-size:14px; color:#7a5af0;">view all tasks →</div></div>
+                    <div style="display:flex; flex-direction:column; gap:9px;">
+                      <div style="display:flex; align-items:center; gap:11px; padding:10px; border:2px solid #e3dfd6; border-radius:10px;"><span style="width:16px;height:16px;border:2px solid #b9b5ab;border-radius:5px;"></span><div style="flex:1;"><div style="height:11px; width:60%; background:#d9d5cc; border-radius:5px;"></div><div style="height:8px; width:35%; background:#eceae3; border-radius:4px; margin-top:6px;"></div></div><span style="font-size:12px; background:#fdeeee; color:#c0392b; border:1.5px solid #e8b4b4; border-radius:8px; padding:2px 8px;">due 2pm</span></div>
+                      <div style="display:flex; align-items:center; gap:11px; padding:10px; border:2px solid #e3dfd6; border-radius:10px;"><span style="width:16px;height:16px;border:2px solid #b9b5ab;border-radius:5px;"></span><div style="flex:1;"><div style="height:11px; width:50%; background:#d9d5cc; border-radius:5px;"></div><div style="height:8px; width:42%; background:#eceae3; border-radius:4px; margin-top:6px;"></div></div><span style="font-size:12px; background:#f1ecff; color:#7a5af0; border:1.5px solid #cdbcff; border-radius:8px; padding:2px 8px;">in progress</span></div>
+                      <div style="display:flex; align-items:center; gap:11px; padding:10px; border:2px solid #e3dfd6; border-radius:10px;"><span style="width:16px;height:16px;border:2px solid #b9b5ab;border-radius:5px;"></span><div style="flex:1;"><div style="height:11px; width:68%; background:#d9d5cc; border-radius:5px;"></div><div style="height:8px; width:30%; background:#eceae3; border-radius:4px; margin-top:6px;"></div></div><span style="font-size:12px; background:#eef6ef; color:#3f7d53; border:1.5px solid #b9d8c2; border-radius:8px; padding:2px 8px;">waiting client</span></div>
+                    </div>
+                  </div>
+                  <div style="border:2px solid #cfcabf; border-radius:13px; background:#fff; padding:15px;">
+                    <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px;"><div style="font-size:18px; font-weight:700;">Income — last 8 weeks</div><div style="font-family:'Gaegu',cursive; font-size:14px; color:#857f74;">$500/wk retainer · 3 clients</div></div>
+                    <div style="height:120px; border-radius:9px; background:repeating-linear-gradient(135deg,#f3f1ec,#f3f1ec 9px,#faf9f6 9px,#faf9f6 18px); border:2px dashed #cfcabf; display:flex; align-items:flex-end; gap:8px; padding:12px;">
+                      <div style="flex:1;height:40%;background:#cdbcff;border-radius:5px 5px 0 0;"></div>
+                      <div style="flex:1;height:60%;background:#cdbcff;border-radius:5px 5px 0 0;"></div>
+                      <div style="flex:1;height:48%;background:#cdbcff;border-radius:5px 5px 0 0;"></div>
+                      <div style="flex:1;height:72%;background:#cdbcff;border-radius:5px 5px 0 0;"></div>
+                      <div style="flex:1;height:66%;background:#cdbcff;border-radius:5px 5px 0 0;"></div>
+                      <div style="flex:1;height:85%;background:#7a5af0;border-radius:5px 5px 0 0;"></div>
+                      <div style="flex:1;height:78%;background:#7a5af0;border-radius:5px 5px 0 0;"></div>
+                      <div style="flex:1;height:92%;background:#7a5af0;border-radius:5px 5px 0 0;"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- right column: AI + messages -->
+                <div style="display:flex; flex-direction:column; gap:18px;">
+                  <div style="border:2px solid #c89b2c; border-radius:13px; background:#fdf8ec; padding:15px;">
+                    <div style="display:flex; align-items:center; gap:8px; margin-bottom:12px;"><span style="color:#c89b2c; font-size:18px;">✦</span><div style="font-size:18px; font-weight:700;">AI agents</div><span style="margin-left:auto; font-family:'Gaegu',cursive; font-size:14px; color:#b08620;">quick launch</span></div>
+                    <div style="display:flex; flex-direction:column; gap:9px;">
+                      <div style="display:flex; align-items:center; gap:10px; padding:10px; border:2px solid #e7cf94; border-radius:10px; background:#fff;"><span style="width:16px;height:16px;border-radius:5px;background:#e7cf94;"></span><div style="flex:1; font-size:15px;">Email drafting</div><span style="font-size:18px; color:#c89b2c;">→</span></div>
+                      <div style="display:flex; align-items:center; gap:10px; padding:10px; border:2px solid #e7cf94; border-radius:10px; background:#fff;"><span style="width:16px;height:16px;border-radius:5px;background:#e7cf94;"></span><div style="flex:1; font-size:15px;">Research</div><span style="font-size:18px; color:#c89b2c;">→</span></div>
+                      <div style="display:flex; align-items:center; gap:10px; padding:10px; border:2px solid #e7cf94; border-radius:10px; background:#fff;"><span style="width:16px;height:16px;border-radius:5px;background:#e7cf94;"></span><div style="flex:1; font-size:15px;">Report generator</div><span style="font-size:18px; color:#c89b2c;">→</span></div>
+                      <div style="text-align:center; font-family:'Gaegu',cursive; font-size:14px; color:#b08620; padding-top:2px;">+ 5 more agents</div>
+                    </div>
+                  </div>
+                  <div style="border:2px solid #cfcabf; border-radius:13px; background:#fff; padding:15px;">
+                    <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px;"><div style="font-size:18px; font-weight:700;">Recent messages</div><span style="font-size:12px; background:#c0392b; color:#fff; border-radius:8px; padding:1px 7px;">3 new</span></div>
+                    <div style="display:flex; flex-direction:column; gap:11px;">
+                      <div style="display:flex; gap:10px; align-items:flex-start;"><div style="width:30px;height:30px;border-radius:50%;background:repeating-linear-gradient(135deg,#ece9e2,#ece9e2 5px,#f6f4ef 5px,#f6f4ef 10px);border:2px solid #b9b5ab;flex-shrink:0;"></div><div style="flex:1;"><div style="height:10px; width:45%; background:#d9d5cc; border-radius:5px;"></div><div style="height:8px; width:85%; background:#eceae3; border-radius:4px; margin-top:6px;"></div></div></div>
+                      <div style="display:flex; gap:10px; align-items:flex-start;"><div style="width:30px;height:30px;border-radius:50%;background:repeating-linear-gradient(135deg,#ece9e2,#ece9e2 5px,#f6f4ef 5px,#f6f4ef 10px);border:2px solid #b9b5ab;flex-shrink:0;"></div><div style="flex:1;"><div style="height:10px; width:40%; background:#d9d5cc; border-radius:5px;"></div><div style="height:8px; width:70%; background:#eceae3; border-radius:4px; margin-top:6px;"></div></div></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p style="margin:14px 2px 0; font-family:'Gaegu',cursive; font-size:16px; color:#c0392b; line-height:1.5;">△ notes: KPI row mirrors blueprint's 5 studio metrics. AI agents live top-right so they're glanceable but not in the way. "Today's focus" = cross-section pull (tasks due + waiting-on-client) so Cristi opens to a clear next action.</p>
+    </section>
+    </sc-if>
+
+    <!-- ============ TASKS ============ -->
+    <sc-if value="{{ isTasks }}">
+    <section>
+      <div style="display:flex; align-items:baseline; gap:12px; margin-bottom:18px; flex-wrap:wrap;">
+        <h2 style="margin:0; font-size:24px; font-weight:700;">/tasks</h2>
+        <span style="font-family:'Gaegu',cursive; color:#857f74; font-size:16px;">available · assigned · active · completed — board view</span>
+      </div>
+
+      <div style="border:3px solid #2b2b2b; border-radius:16px; background:#fff; box-shadow:6px 8px 0 rgba(43,43,43,.10); overflow:hidden;">
+        <div style="display:flex; gap:7px; padding:10px 14px; border-bottom:2px solid #2b2b2b; background:#f3f1ec; align-items:center;">
+          <span style="width:11px;height:11px;border-radius:50%;border:1.5px solid #2b2b2b;"></span><span style="width:11px;height:11px;border-radius:50%;border:1.5px solid #2b2b2b;"></span><span style="width:11px;height:11px;border-radius:50%;border:1.5px solid #2b2b2b;"></span>
+          <span style="margin-left:10px; font-family:'Gaegu',cursive; font-size:14px; color:#857f74;">studio.automagic.dev/tasks</span>
+        </div>
+        <div style="display:flex; min-height:560px;">
+          <!-- sidebar -->
+          <div style="width:204px; border-right:2px solid #2b2b2b; background:#faf9f6; padding:16px 12px; display:flex; flex-direction:column;">
+            <div style="display:flex; align-items:center; gap:8px; padding:0 4px 16px;"><span style="color:#c89b2c; font-size:20px;">✦</span><span style="font-weight:700; font-size:19px;">AutoMagic</span></div>
+            <div style="display:flex; flex-direction:column; gap:3px;">
+              <div style="display:flex; align-items:center; gap:9px; padding:8px 10px; border-radius:9px;"><span style="width:16px;height:16px;border-radius:4px;border:2px solid #b9b5ab;"></span><span style="font-size:16px; color:#6b675f;">Dashboard</span></div>
+              <div style="display:flex; align-items:center; gap:9px; padding:8px 10px; border-radius:9px;"><span style="width:16px;height:16px;border-radius:4px;border:2px solid #b9b5ab;"></span><span style="font-size:16px; color:#6b675f;">Calendar</span></div>
+              <div style="display:flex; align-items:center; gap:9px; padding:8px 10px; border-radius:9px;"><span style="width:16px;height:16px;border-radius:4px;border:2px solid #b9b5ab;"></span><span style="font-size:16px; color:#6b675f;">Chat</span></div>
+              <div style="display:flex; align-items:center; gap:9px; padding:8px 10px; border-radius:9px;"><span style="width:16px;height:16px;border-radius:4px;border:2px solid #b9b5ab;"></span><span style="font-size:16px; color:#6b675f;">Notifications</span></div>
+              <div style="display:flex; align-items:center; gap:9px; padding:8px 10px; border-radius:9px;"><span style="width:16px;height:16px;border-radius:4px;border:2px solid #b9b5ab;"></span><span style="font-size:16px; color:#6b675f;">Clients</span></div>
+              <div style="display:flex; align-items:center; gap:9px; padding:8px 10px; border-radius:9px;"><span style="width:16px;height:16px;border-radius:4px;border:2px solid #c89b2c;"></span><span style="font-size:16px; color:#6b675f;">Agents</span><span style="margin-left:auto; color:#c89b2c; font-size:14px;">✦</span></div>
+              <div style="display:flex; align-items:center; gap:9px; padding:8px 10px; border-radius:9px; background:#efeaff; border-left:3px solid #7a5af0;"><span style="width:16px;height:16px;border-radius:4px;background:#7a5af0;"></span><span style="font-size:16px; font-weight:700;">Tasks</span></div>
+              <div style="display:flex; align-items:center; gap:9px; padding:8px 10px; border-radius:9px;"><span style="width:16px;height:16px;border-radius:4px;border:2px solid #b9b5ab;"></span><span style="font-size:16px; color:#6b675f;">Profile</span></div>
+            </div>
+            <div style="margin-top:auto; display:flex; align-items:center; gap:9px; padding:9px; border:2px dashed #b9b5ab; border-radius:11px;"><div style="width:30px;height:30px;border-radius:50%;background:repeating-linear-gradient(135deg,#ece9e2,#ece9e2 5px,#f6f4ef 5px,#f6f4ef 10px);border:2px solid #b9b5ab;"></div><div><div style="font-size:14px; font-weight:700;">Cristi Ș.</div><div style="font-size:12px; color:#857f74;">VA · studio</div></div></div>
+          </div>
+          <!-- main -->
+          <div style="flex:1; display:flex; flex-direction:column; min-width:0;">
+            <div style="height:52px; border-bottom:2px solid #2b2b2b; display:flex; align-items:center; gap:12px; padding:0 18px;">
+              <div style="font-size:20px; font-weight:700;">Tasks</div>
+              <div style="margin-left:auto; display:flex; gap:8px; align-items:center;">
+                <div style="display:flex; border:2px solid #2b2b2b; border-radius:9px; overflow:hidden; font-size:14px;"><span style="padding:5px 12px; background:#7a5af0; color:#fff;">Board</span><span style="padding:5px 12px; color:#6b675f; border-left:2px solid #2b2b2b;">List</span></div>
+                <div style="padding:5px 12px; border:2px solid #cfcabf; border-radius:9px; font-size:14px; color:#6b675f;">Filters ▾</div>
+                <div style="padding:6px 14px; border:2.5px solid #2b2b2b; border-radius:10px; background:#fff; box-shadow:2px 2px 0 rgba(43,43,43,.15); font-size:14px; font-weight:700;">+ New task</div>
+              </div>
+            </div>
+            <!-- filter chips -->
+            <div style="padding:12px 18px; border-bottom:2px dashed #e3dfd6; display:flex; gap:8px; flex-wrap:wrap; align-items:center;">
+              <span style="font-family:'Gaegu',cursive; font-size:14px; color:#857f74;">filter:</span>
+              <span style="font-size:13px; padding:3px 11px; border:2px solid #cdbcff; background:#f1ecff; color:#7a5af0; border-radius:20px;">category</span>
+              <span style="font-size:13px; padding:3px 11px; border:2px solid #cfcabf; border-radius:20px; color:#6b675f;">budget</span>
+              <span style="font-size:13px; padding:3px 11px; border:2px solid #cfcabf; border-radius:20px; color:#6b675f;">time</span>
+              <span style="font-size:13px; padding:3px 11px; border:2px solid #cfcabf; border-radius:20px; color:#6b675f;">client</span>
+            </div>
+            <!-- KANBAN -->
+            <div style="flex:1; padding:18px; background:#fdfdfc; display:grid; grid-template-columns:repeat(4,1fr); gap:14px; align-items:start;">
+              <!-- column -->
+              <div style="display:flex; flex-direction:column; gap:10px;">
+                <div style="display:flex; align-items:center; gap:7px; font-size:15px; font-weight:700;"><span style="width:9px;height:9px;border-radius:50%;background:#857f74;"></span>Available <span style="color:#a8a399; font-weight:400;">3</span></div>
+                <div style="border:2px solid #cfcabf; border-radius:11px; background:#fff; padding:11px; display:flex; flex-direction:column; gap:8px;"><div style="height:11px; width:80%; background:#d9d5cc; border-radius:5px;"></div><div style="height:8px; width:55%; background:#eceae3; border-radius:4px;"></div><div style="display:flex; gap:6px; margin-top:3px;"><span style="font-size:11px; padding:2px 8px; background:#f3f1ec; border:1.5px solid #d9d5cc; border-radius:8px;">$120</span><span style="font-size:11px; padding:2px 8px; background:#f3f1ec; border:1.5px solid #d9d5cc; border-radius:8px;">3 days</span></div></div>
+                <div style="border:2px solid #cfcabf; border-radius:11px; background:#fff; padding:11px; display:flex; flex-direction:column; gap:8px;"><div style="height:11px; width:65%; background:#d9d5cc; border-radius:5px;"></div><div style="height:8px; width:70%; background:#eceae3; border-radius:4px;"></div><div style="display:flex; gap:6px; margin-top:3px;"><span style="font-size:11px; padding:2px 8px; background:#f3f1ec; border:1.5px solid #d9d5cc; border-radius:8px;">$80</span></div></div>
+              </div>
+              <!-- column -->
+              <div style="display:flex; flex-direction:column; gap:10px;">
+                <div style="display:flex; align-items:center; gap:7px; font-size:15px; font-weight:700;"><span style="width:9px;height:9px;border-radius:50%;background:#7a5af0;"></span>In progress <span style="color:#a8a399; font-weight:400;">2</span></div>
+                <div style="border:2px solid #7a5af0; border-radius:11px; background:#faf8ff; padding:11px; display:flex; flex-direction:column; gap:8px;"><div style="display:flex;align-items:center;gap:5px;"><div style="height:11px; width:70%; background:#cdbcff; border-radius:5px;"></div><span style="margin-left:auto; color:#c89b2c; font-size:13px;">✦</span></div><div style="height:8px; width:60%; background:#eceae3; border-radius:4px;"></div><div style="display:flex; align-items:center; gap:6px; margin-top:3px;"><div style="width:20px;height:20px;border-radius:50%;background:repeating-linear-gradient(135deg,#ece9e2,#ece9e2 4px,#f6f4ef 4px,#f6f4ef 8px);border:1.5px solid #b9b5ab;"></div><span style="font-size:11px; padding:2px 8px; background:#fdeeee; color:#c0392b; border:1.5px solid #e8b4b4; border-radius:8px;">due 2pm</span></div></div>
+                <div style="border:2px solid #cfcabf; border-radius:11px; background:#fff; padding:11px; display:flex; flex-direction:column; gap:8px;"><div style="height:11px; width:75%; background:#d9d5cc; border-radius:5px;"></div><div style="height:8px; width:50%; background:#eceae3; border-radius:4px;"></div></div>
+              </div>
+              <!-- column -->
+              <div style="display:flex; flex-direction:column; gap:10px;">
+                <div style="display:flex; align-items:center; gap:7px; font-size:15px; font-weight:700;"><span style="width:9px;height:9px;border-radius:50%;background:#3f7d53;"></span>Waiting client <span style="color:#a8a399; font-weight:400;">1</span></div>
+                <div style="border:2px solid #cfcabf; border-radius:11px; background:#fff; padding:11px; display:flex; flex-direction:column; gap:8px;"><div style="height:11px; width:60%; background:#d9d5cc; border-radius:5px;"></div><div style="height:8px; width:65%; background:#eceae3; border-radius:4px;"></div><div style="display:flex; gap:6px; margin-top:3px;"><span style="font-size:11px; padding:2px 8px; background:#eef6ef; color:#3f7d53; border:1.5px solid #b9d8c2; border-radius:8px;">review sent</span></div></div>
+              </div>
+              <!-- column -->
+              <div style="display:flex; flex-direction:column; gap:10px;">
+                <div style="display:flex; align-items:center; gap:7px; font-size:15px; font-weight:700;"><span style="width:9px;height:9px;border-radius:50%;background:#c89b2c;"></span>Completed <span style="color:#a8a399; font-weight:400;">5</span></div>
+                <div style="border:2px solid #e3dfd6; border-radius:11px; background:#fbfaf7; padding:11px; display:flex; flex-direction:column; gap:8px; opacity:.75;"><div style="height:11px; width:70%; background:#d9d5cc; border-radius:5px;"></div><div style="height:8px; width:45%; background:#eceae3; border-radius:4px;"></div></div>
+                <div style="border:2px solid #e3dfd6; border-radius:11px; background:#fbfaf7; padding:11px; display:flex; flex-direction:column; gap:8px; opacity:.75;"><div style="height:11px; width:55%; background:#d9d5cc; border-radius:5px;"></div><div style="height:8px; width:60%; background:#eceae3; border-radius:4px;"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p style="margin:14px 2px 0; font-family:'Gaegu',cursive; font-size:16px; color:#c0392b; line-height:1.5;">△ notes: board groups by the blueprint's task statuses (collapsed to 4 lanes for VA view; full status set lives in detail). ✦ = task with an active AI agent run. Board / List toggle top-right; List = DataTable for bulk + sorting by budget/due.</p>
+    </section>
+    </sc-if>
+
+    <!-- ============ TASK DETAIL + AI ============ -->
+    <sc-if value="{{ isTaskDetail }}">
+    <section>
+      <div style="display:flex; align-items:baseline; gap:12px; margin-bottom:18px; flex-wrap:wrap;">
+        <h2 style="margin:0; font-size:24px; font-weight:700;">/tasks/:id</h2>
+        <span style="font-family:'Gaegu',cursive; color:#857f74; font-size:16px;">the money screen — task work + AI agent docked right ✦</span>
+      </div>
+
+      <div style="border:3px solid #2b2b2b; border-radius:16px; background:#fff; box-shadow:6px 8px 0 rgba(43,43,43,.10); overflow:hidden;">
+        <div style="display:flex; gap:7px; padding:10px 14px; border-bottom:2px solid #2b2b2b; background:#f3f1ec; align-items:center;">
+          <span style="width:11px;height:11px;border-radius:50%;border:1.5px solid #2b2b2b;"></span><span style="width:11px;height:11px;border-radius:50%;border:1.5px solid #2b2b2b;"></span><span style="width:11px;height:11px;border-radius:50%;border:1.5px solid #2b2b2b;"></span>
+          <span style="margin-left:10px; font-family:'Gaegu',cursive; font-size:14px; color:#857f74;">studio.automagic.dev/tasks/482</span>
+        </div>
+        <div style="display:flex; min-height:600px;">
+          <!-- collapsed icon rail (detail view reclaims width) -->
+          <div style="width:58px; border-right:2px solid #2b2b2b; background:#faf9f6; padding:14px 0; display:flex; flex-direction:column; align-items:center; gap:13px;">
+            <span style="color:#c89b2c; font-size:20px;">✦</span>
+            <span style="width:20px;height:20px;border-radius:6px;border:2px solid #b9b5ab;"></span>
+            <span style="width:20px;height:20px;border-radius:6px;border:2px solid #b9b5ab;"></span>
+            <span style="width:20px;height:20px;border-radius:6px;background:#7a5af0;"></span>
+            <span style="width:20px;height:20px;border-radius:6px;border:2px solid #c89b2c;"></span>
+            <span style="width:20px;height:20px;border-radius:6px;border:2px solid #b9b5ab;"></span>
+            <div style="margin-top:auto; width:28px;height:28px;border-radius:50%;background:repeating-linear-gradient(135deg,#ece9e2,#ece9e2 5px,#f6f4ef 5px,#f6f4ef 10px);border:2px solid #b9b5ab;"></div>
+          </div>
+          <!-- center: task -->
+          <div style="flex:1; display:flex; flex-direction:column; min-width:0;">
+            <div style="padding:14px 20px; border-bottom:2px solid #2b2b2b; display:flex; align-items:center; gap:10px;">
+              <span style="font-family:'Gaegu',cursive; font-size:14px; color:#7a5af0;">← Tasks</span>
+              <span style="font-family:'Gaegu',cursive; font-size:14px; color:#a8a399;">/ #482</span>
+            </div>
+            <div style="flex:1; padding:22px; display:flex; flex-direction:column; gap:18px; background:#fdfdfc; overflow:hidden;">
+              <!-- title + status -->
+              <div style="display:flex; align-items:flex-start; gap:14px;">
+                <div style="flex:1;">
+                  <div style="font-size:23px; font-weight:700;">Weekly competitor research report</div>
+                  <div style="display:flex; align-items:center; gap:10px; margin-top:8px;">
+                    <div style="width:26px;height:26px;border-radius:50%;background:repeating-linear-gradient(135deg,#ece9e2,#ece9e2 5px,#f6f4ef 5px,#f6f4ef 10px);border:2px solid #b9b5ab;"></div>
+                    <span style="font-size:15px; color:#6b675f;">Acme Co · Research &amp; reporting</span>
+                  </div>
+                </div>
+                <span style="font-size:13px; padding:5px 12px; background:#f1ecff; color:#7a5af0; border:2px solid #cdbcff; border-radius:20px; font-weight:700;">in progress</span>
+              </div>
+              <!-- meta strip -->
+              <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                <div style="border:2px solid #cfcabf; border-radius:10px; padding:8px 13px;"><div style="font-family:'Gaegu',cursive; font-size:12px; color:#857f74;">budget</div><div style="font-size:16px; font-weight:700;">$240</div></div>
+                <div style="border:2px solid #cfcabf; border-radius:10px; padding:8px 13px;"><div style="font-family:'Gaegu',cursive; font-size:12px; color:#857f74;">due</div><div style="font-size:16px; font-weight:700;">Today 2pm</div></div>
+                <div style="border:2px solid #cfcabf; border-radius:10px; padding:8px 13px;"><div style="font-family:'Gaegu',cursive; font-size:12px; color:#857f74;">timeline</div><div style="font-size:16px; font-weight:700;">2 days</div></div>
+              </div>
+              <!-- description -->
+              <div style="border:2px solid #cfcabf; border-radius:13px; background:#fff; padding:15px;">
+                <div style="font-size:16px; font-weight:700; margin-bottom:10px;">Brief</div>
+                <div style="display:flex; flex-direction:column; gap:7px;"><div style="height:9px; width:100%; background:#e3dfd6; border-radius:5px;"></div><div style="height:9px; width:94%; background:#e3dfd6; border-radius:5px;"></div><div style="height:9px; width:76%; background:#e3dfd6; border-radius:5px;"></div></div>
+                <div style="display:flex; gap:8px; margin-top:13px;"><div style="display:flex; align-items:center; gap:6px; border:2px dashed #b9b5ab; border-radius:9px; padding:6px 10px;"><span style="width:14px;height:14px;border:1.5px solid #b9b5ab;border-radius:3px;"></span><span style="font-size:13px; color:#6b675f;">brief.pdf</span></div><div style="display:flex; align-items:center; gap:6px; border:2px dashed #b9b5ab; border-radius:9px; padding:6px 10px;"><span style="width:14px;height:14px;border:1.5px solid #b9b5ab;border-radius:3px;"></span><span style="font-size:13px; color:#6b675f;">data.xlsx</span></div></div>
+              </div>
+              <!-- tabs row -->
+              <div style="display:flex; gap:18px; border-bottom:2px solid #e3dfd6; padding-bottom:2px;">
+                <span style="font-size:15px; font-weight:700; border-bottom:3px solid #7a5af0; padding-bottom:8px;">Comments</span>
+                <span style="font-size:15px; color:#857f74; padding-bottom:8px;">Files</span>
+                <span style="font-size:15px; color:#857f74; padding-bottom:8px;">Delivery</span>
+                <span style="font-size:15px; color:#857f74; padding-bottom:8px;">Activity</span>
+              </div>
+              <!-- comments -->
+              <div style="display:flex; flex-direction:column; gap:13px;">
+                <div style="display:flex; gap:11px;"><div style="width:32px;height:32px;border-radius:50%;background:repeating-linear-gradient(135deg,#ece9e2,#ece9e2 5px,#f6f4ef 5px,#f6f4ef 10px);border:2px solid #b9b5ab;flex-shrink:0;"></div><div style="flex:1; border:2px solid #e3dfd6; border-radius:11px; padding:11px;"><div style="height:9px; width:30%; background:#d9d5cc; border-radius:5px;"></div><div style="height:8px; width:88%; background:#eceae3; border-radius:4px; margin-top:8px;"></div></div></div>
+                <div style="display:flex; gap:11px;"><div style="width:32px;height:32px;border-radius:50%;background:repeating-linear-gradient(135deg,#ece9e2,#ece9e2 5px,#f6f4ef 5px,#f6f4ef 10px);border:2px solid #b9b5ab;flex-shrink:0;"></div><div style="flex:1; border:2px solid #e3dfd6; border-radius:11px; padding:11px;"><div style="height:9px; width:25%; background:#d9d5cc; border-radius:5px;"></div><div style="height:8px; width:70%; background:#eceae3; border-radius:4px; margin-top:8px;"></div></div></div>
+              </div>
+              <div style="margin-top:auto; display:flex; gap:10px; align-items:center; border:2px solid #cfcabf; border-radius:11px; padding:9px 13px;"><div style="flex:1; font-family:'Gaegu',cursive; color:#a8a399; font-size:15px;">Write a comment…</div><div style="padding:6px 16px; border:2.5px solid #2b2b2b; border-radius:9px; font-size:14px; font-weight:700; box-shadow:2px 2px 0 rgba(43,43,43,.15);">Send</div></div>
+            </div>
+          </div>
+          <!-- right: AI AGENT PANEL -->
+          <div style="width:330px; border-left:2.5px solid #c89b2c; background:#fdf8ec; display:flex; flex-direction:column;">
+            <div style="padding:15px 16px; border-bottom:2px solid #e7cf94; display:flex; align-items:center; gap:9px;">
+              <span style="color:#c89b2c; font-size:20px; animation:twinkle 2.6s ease-in-out infinite; display:inline-block;">✦</span>
+              <div style="font-size:18px; font-weight:700;">AI agent</div>
+              <span style="margin-left:auto; font-size:12px; padding:3px 9px; background:#fff; border:2px solid #e7cf94; border-radius:8px; color:#b08620;">Research ▾</span>
+            </div>
+            <div style="flex:1; padding:16px; display:flex; flex-direction:column; gap:13px; overflow:hidden;">
+              <div style="font-family:'Gaegu',cursive; font-size:14px; color:#b08620;">context auto-loaded from this task ↓</div>
+              <div style="border:2px solid #e7cf94; border-radius:11px; background:#fff; padding:11px;"><div style="font-size:13px; color:#857f74; font-family:'Gaegu',cursive;">inputs</div><div style="display:flex; gap:6px; margin-top:7px; flex-wrap:wrap;"><span style="font-size:12px; padding:2px 9px; background:#fdf3da; border:1.5px solid #e7cf94; border-radius:8px;">brief.pdf</span><span style="font-size:12px; padding:2px 9px; background:#fdf3da; border:1.5px solid #e7cf94; border-radius:8px;">data.xlsx</span><span style="font-size:12px; padding:2px 9px; background:#fdf3da; border:1.5px solid #e7cf94; border-radius:8px;">+ note</span></div></div>
+              <!-- output -->
+              <div style="flex:1; border:2px solid #e7cf94; border-radius:11px; background:#fff; padding:12px; display:flex; flex-direction:column; gap:7px;">
+                <div style="font-size:13px; color:#857f74; font-family:'Gaegu',cursive;">draft output</div>
+                <div style="height:9px; width:90%; background:#f0e6cf; border-radius:5px;"></div>
+                <div style="height:9px; width:96%; background:#f0e6cf; border-radius:5px;"></div>
+                <div style="height:9px; width:70%; background:#f0e6cf; border-radius:5px;"></div>
+                <div style="height:9px; width:84%; background:#f0e6cf; border-radius:5px;"></div>
+                <div style="height:9px; width:50%; background:#f0e6cf; border-radius:5px;"></div>
+                <div style="display:flex; gap:7px; margin-top:auto;"><span style="font-size:12px; padding:4px 10px; border:1.5px solid #e7cf94; border-radius:8px; color:#b08620;">copy</span><span style="font-size:12px; padding:4px 10px; border:1.5px solid #e7cf94; border-radius:8px; color:#b08620;">insert as delivery</span></div>
+              </div>
+              <div style="display:flex; gap:8px;">
+                <div style="flex:1; border:2px solid #cfcabf; border-radius:10px; padding:9px 11px; font-family:'Gaegu',cursive; color:#a8a399; font-size:14px;">refine the draft…</div>
+                <div style="padding:9px 16px; background:#c89b2c; color:#fff; border:2.5px solid #2b2b2b; border-radius:10px; font-size:14px; font-weight:700; box-shadow:2px 2px 0 rgba(43,43,43,.2);">Run</div>
+              </div>
+              <div style="font-family:'Gaegu',cursive; font-size:13px; color:#b08620; text-align:center;">history · 3 runs on this task</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p style="margin:14px 2px 0; font-family:'Gaegu',cursive; font-size:16px; color:#c0392b; line-height:1.5;">△ notes: side nav collapses to an icon rail here to give the work + AI panel room (this is the "borrow C" idea from the shell page). AI panel auto-pulls task files as inputs; "insert as delivery" routes the output straight into the Delivery tab. agent_runs history pinned to the task.</p>
+    </section>
+    </sc-if>
+
+    <!-- ============ AGENTS ============ -->
+    <sc-if value="{{ isAgents }}">
+    <section>
+      <div style="display:flex; align-items:baseline; gap:12px; margin-bottom:18px; flex-wrap:wrap;">
+        <h2 style="margin:0; font-size:24px; font-weight:700;">/agents &amp; /agents/:id</h2>
+        <span style="font-family:'Gaegu',cursive; color:#857f74; font-size:16px;">8 agent types — library, then a focused workspace ✦</span>
+      </div>
+
+      <div style="border:3px solid #2b2b2b; border-radius:16px; background:#fff; box-shadow:6px 8px 0 rgba(43,43,43,.10); overflow:hidden;">
+        <div style="display:flex; gap:7px; padding:10px 14px; border-bottom:2px solid #2b2b2b; background:#f3f1ec; align-items:center;">
+          <span style="width:11px;height:11px;border-radius:50%;border:1.5px solid #2b2b2b;"></span><span style="width:11px;height:11px;border-radius:50%;border:1.5px solid #2b2b2b;"></span><span style="width:11px;height:11px;border-radius:50%;border:1.5px solid #2b2b2b;"></span>
+          <span style="margin-left:10px; font-family:'Gaegu',cursive; font-size:14px; color:#857f74;">studio.automagic.dev/agents</span>
+        </div>
+        <div style="padding:22px; background:#fdfdfc;">
+          <div style="display:flex; align-items:center; gap:10px; margin-bottom:16px;">
+            <span style="color:#c89b2c; font-size:22px;">✦</span>
+            <div style="font-size:21px; font-weight:700;">AI agent library</div>
+            <span style="margin-left:auto; font-family:'Gaegu',cursive; font-size:14px; color:#857f74;">8 agents · click to open workspace</span>
+          </div>
+          <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:13px;">
+            <div style="border:2px solid #e7cf94; border-radius:13px; background:#fdf8ec; padding:14px;"><div style="width:30px;height:30px;border-radius:8px;background:#e7cf94; margin-bottom:10px;"></div><div style="font-size:15px; font-weight:700;">Email drafting</div><div style="height:8px; width:90%; background:#f0e6cf; border-radius:4px; margin-top:8px;"></div><div style="height:8px; width:60%; background:#f0e6cf; border-radius:4px; margin-top:5px;"></div></div>
+            <div style="border:2px solid #e7cf94; border-radius:13px; background:#fdf8ec; padding:14px;"><div style="width:30px;height:30px;border-radius:8px;background:#e7cf94; margin-bottom:10px;"></div><div style="font-size:15px; font-weight:700;">Research</div><div style="height:8px; width:85%; background:#f0e6cf; border-radius:4px; margin-top:8px;"></div><div style="height:8px; width:55%; background:#f0e6cf; border-radius:4px; margin-top:5px;"></div></div>
+            <div style="border:2px solid #e7cf94; border-radius:13px; background:#fdf8ec; padding:14px;"><div style="width:30px;height:30px;border-radius:8px;background:#e7cf94; margin-bottom:10px;"></div><div style="font-size:15px; font-weight:700;">Support reply</div><div style="height:8px; width:80%; background:#f0e6cf; border-radius:4px; margin-top:8px;"></div><div style="height:8px; width:65%; background:#f0e6cf; border-radius:4px; margin-top:5px;"></div></div>
+            <div style="border:2px solid #e7cf94; border-radius:13px; background:#fdf8ec; padding:14px;"><div style="width:30px;height:30px;border-radius:8px;background:#e7cf94; margin-bottom:10px;"></div><div style="font-size:15px; font-weight:700;">Report generator</div><div style="height:8px; width:88%; background:#f0e6cf; border-radius:4px; margin-top:8px;"></div><div style="height:8px; width:50%; background:#f0e6cf; border-radius:4px; margin-top:5px;"></div></div>
+            <div style="border:2px solid #e7cf94; border-radius:13px; background:#fdf8ec; padding:14px;"><div style="width:30px;height:30px;border-radius:8px;background:#e7cf94; margin-bottom:10px;"></div><div style="font-size:15px; font-weight:700;">CRM update</div><div style="height:8px; width:75%; background:#f0e6cf; border-radius:4px; margin-top:8px;"></div><div style="height:8px; width:60%; background:#f0e6cf; border-radius:4px; margin-top:5px;"></div></div>
+            <div style="border:2px solid #e7cf94; border-radius:13px; background:#fdf8ec; padding:14px;"><div style="width:30px;height:30px;border-radius:8px;background:#e7cf94; margin-bottom:10px;"></div><div style="font-size:15px; font-weight:700;">Automation planner</div><div style="height:8px; width:92%; background:#f0e6cf; border-radius:4px; margin-top:8px;"></div><div style="height:8px; width:45%; background:#f0e6cf; border-radius:4px; margin-top:5px;"></div></div>
+            <div style="border:2px solid #e7cf94; border-radius:13px; background:#fdf8ec; padding:14px;"><div style="width:30px;height:30px;border-radius:8px;background:#e7cf94; margin-bottom:10px;"></div><div style="font-size:15px; font-weight:700;">Invoice description</div><div style="height:8px; width:70%; background:#f0e6cf; border-radius:4px; margin-top:8px;"></div><div style="height:8px; width:58%; background:#f0e6cf; border-radius:4px; margin-top:5px;"></div></div>
+            <div style="border:2px solid #e7cf94; border-radius:13px; background:#fdf8ec; padding:14px;"><div style="width:30px;height:30px;border-radius:8px;background:#e7cf94; margin-bottom:10px;"></div><div style="font-size:15px; font-weight:700;">Client update</div><div style="height:8px; width:82%; background:#f0e6cf; border-radius:4px; margin-top:8px;"></div><div style="height:8px; width:52%; background:#f0e6cf; border-radius:4px; margin-top:5px;"></div></div>
+          </div>
+
+          <!-- workspace preview -->
+          <div style="margin-top:22px; display:flex; align-items:center; gap:9px;">
+            <div style="font-size:17px; font-weight:700;">↳ /agents/:id — workspace</div>
+            <span style="font-family:'Gaegu',cursive; font-size:14px; color:#857f74;">opens when an agent is picked</span>
+          </div>
+          <div style="margin-top:11px; border:2px solid #c89b2c; border-radius:13px; overflow:hidden; display:flex; min-height:280px;">
+            <div style="flex:1; padding:16px; display:flex; flex-direction:column; gap:11px; border-right:2px solid #e7cf94;">
+              <div style="display:flex; align-items:center; gap:9px;"><div style="width:26px;height:26px;border-radius:7px;background:#e7cf94;"></div><div style="font-size:16px; font-weight:700;">Research agent</div></div>
+              <div style="font-family:'Gaegu',cursive; font-size:14px; color:#857f74;">task brief / prompt</div>
+              <div style="border:2px solid #cfcabf; border-radius:10px; padding:11px; display:flex; flex-direction:column; gap:6px;"><div style="height:9px; width:95%; background:#e3dfd6; border-radius:5px;"></div><div style="height:9px; width:80%; background:#e3dfd6; border-radius:5px;"></div></div>
+              <div style="font-family:'Gaegu',cursive; font-size:14px; color:#857f74;">inputs</div>
+              <div style="display:flex; gap:7px; flex-wrap:wrap;"><span style="font-size:12px; padding:3px 10px; background:#fdf3da; border:1.5px solid #e7cf94; border-radius:8px;">attach file</span><span style="font-size:12px; padding:3px 10px; background:#fdf3da; border:1.5px solid #e7cf94; border-radius:8px;">link task</span><span style="font-size:12px; padding:3px 10px; background:#fdf3da; border:1.5px solid #e7cf94; border-radius:8px;">paste text</span></div>
+              <div style="margin-top:auto; display:flex; gap:8px;"><div style="flex:1; border:2px solid #cfcabf; border-radius:10px; padding:9px 11px; font-family:'Gaegu',cursive; color:#a8a399; font-size:14px;">ask the agent…</div><div style="padding:9px 18px; background:#c89b2c; color:#fff; border:2.5px solid #2b2b2b; border-radius:10px; font-size:14px; font-weight:700; box-shadow:2px 2px 0 rgba(43,43,43,.2);">Run</div></div>
+            </div>
+            <div style="width:200px; background:#fdf8ec; padding:16px; display:flex; flex-direction:column; gap:9px;">
+              <div style="font-family:'Gaegu',cursive; font-size:14px; color:#b08620;">run history</div>
+              <div style="border:2px solid #e7cf94; border-radius:9px; background:#fff; padding:9px;"><div style="height:8px; width:70%; background:#f0e6cf; border-radius:4px;"></div><div style="height:7px; width:40%; background:#f5eed9; border-radius:4px; margin-top:5px;"></div></div>
+              <div style="border:2px solid #e7cf94; border-radius:9px; background:#fff; padding:9px;"><div style="height:8px; width:60%; background:#f0e6cf; border-radius:4px;"></div><div style="height:7px; width:45%; background:#f5eed9; border-radius:4px; margin-top:5px;"></div></div>
+              <div style="border:2px solid #e7cf94; border-radius:9px; background:#fff; padding:9px;"><div style="height:8px; width:75%; background:#f0e6cf; border-radius:4px;"></div><div style="height:7px; width:35%; background:#f5eed9; border-radius:4px; margin-top:5px;"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p style="margin:14px 2px 0; font-family:'Gaegu',cursive; font-size:16px; color:#c0392b; line-height:1.5;">△ notes: same 8 agents from the blueprint. Library is the directory; workspace = brief + inputs + output + history (mirrors agent_runs). The right-dock version on Task Detail is the same agent, just pre-scoped to a task. Provider abstraction (OpenAI/Anthropic) lives in settings, not here.</p>
+    </section>
+    </sc-if>
+
+    <!-- ============ CLIENTS ============ -->
+    <sc-if value="{{ isClients }}">
+    <section>
+      <div style="display:flex; align-items:baseline; gap:12px; margin-bottom:18px; flex-wrap:wrap;">
+        <h2 style="margin:0; font-size:24px; font-weight:700;">/clients &amp; /clients/:id</h2>
+        <span style="font-family:'Gaegu',cursive; color:#857f74; font-size:16px;">master list + detail — Cristi runs 1–3 clients, so keep both in view</span>
+      </div>
+
+      <div style="border:3px solid #2b2b2b; border-radius:16px; background:#fff; box-shadow:6px 8px 0 rgba(43,43,43,.10); overflow:hidden;">
+        <div style="display:flex; gap:7px; padding:10px 14px; border-bottom:2px solid #2b2b2b; background:#f3f1ec; align-items:center;">
+          <span style="width:11px;height:11px;border-radius:50%;border:1.5px solid #2b2b2b;"></span><span style="width:11px;height:11px;border-radius:50%;border:1.5px solid #2b2b2b;"></span><span style="width:11px;height:11px;border-radius:50%;border:1.5px solid #2b2b2b;"></span>
+          <span style="margin-left:10px; font-family:'Gaegu',cursive; font-size:14px; color:#857f74;">studio.automagic.dev/clients/acme</span>
+        </div>
+        <div style="display:flex; min-height:560px;">
+          <!-- master list -->
+          <div style="width:260px; border-right:2px solid #2b2b2b; background:#faf9f6; display:flex; flex-direction:column;">
+            <div style="padding:14px; border-bottom:2px solid #e3dfd6;"><div style="font-size:18px; font-weight:700; margin-bottom:10px;">Clients</div><div style="height:30px; border:2px solid #cfcabf; border-radius:9px; display:flex; align-items:center; padding:0 10px; color:#a8a399; font-family:'Gaegu',cursive; font-size:14px;">Search…</div></div>
+            <div style="padding:10px; display:flex; flex-direction:column; gap:7px;">
+              <div style="display:flex; align-items:center; gap:10px; padding:10px; border-radius:10px; background:#efeaff; border:2px solid #cdbcff;"><div style="width:34px;height:34px;border-radius:50%;background:repeating-linear-gradient(135deg,#ece9e2,#ece9e2 5px,#f6f4ef 5px,#f6f4ef 10px);border:2px solid #b9b5ab;"></div><div style="flex:1;"><div style="font-size:15px; font-weight:700;">Acme Co</div><div style="font-size:12px; color:#857f74;">2 active tasks</div></div></div>
+              <div style="display:flex; align-items:center; gap:10px; padding:10px; border-radius:10px;"><div style="width:34px;height:34px;border-radius:50%;background:repeating-linear-gradient(135deg,#ece9e2,#ece9e2 5px,#f6f4ef 5px,#f6f4ef 10px);border:2px solid #b9b5ab;"></div><div style="flex:1;"><div style="font-size:15px; font-weight:700; color:#6b675f;">Bloom Studio</div><div style="font-size:12px; color:#857f74;">1 active task</div></div></div>
+              <div style="display:flex; align-items:center; gap:10px; padding:10px; border-radius:10px;"><div style="width:34px;height:34px;border-radius:50%;background:repeating-linear-gradient(135deg,#ece9e2,#ece9e2 5px,#f6f4ef 5px,#f6f4ef 10px);border:2px solid #b9b5ab;"></div><div style="flex:1;"><div style="font-size:15px; font-weight:700; color:#6b675f;">Vela Foods</div><div style="font-size:12px; color:#857f74;">idle</div></div></div>
+            </div>
+            <div style="margin-top:auto; padding:12px;"><div style="text-align:center; font-family:'Gaegu',cursive; font-size:14px; color:#7a5af0; border:2px dashed #cdbcff; border-radius:10px; padding:9px;">+ add client</div></div>
+          </div>
+          <!-- detail -->
+          <div style="flex:1; display:flex; flex-direction:column; min-width:0; background:#fdfdfc;">
+            <!-- header -->
+            <div style="padding:20px; border-bottom:2px solid #e3dfd6; display:flex; align-items:center; gap:14px;">
+              <div style="width:54px;height:54px;border-radius:50%;background:repeating-linear-gradient(135deg,#ece9e2,#ece9e2 6px,#f6f4ef 6px,#f6f4ef 12px);border:2px solid #b9b5ab;"></div>
+              <div style="flex:1;"><div style="font-size:22px; font-weight:700;">Acme Co</div><div style="font-size:15px; color:#857f74;">Ecommerce · retainer client · since Mar 2026</div></div>
+              <div style="display:flex; gap:8px;"><div style="padding:7px 14px; border:2px solid #cfcabf; border-radius:9px; font-size:14px; color:#6b675f;">Message</div><div style="padding:7px 14px; border:2.5px solid #2b2b2b; border-radius:9px; font-size:14px; font-weight:700; box-shadow:2px 2px 0 rgba(43,43,43,.15);">New task</div></div>
+            </div>
+            <!-- sub tabs -->
+            <div style="display:flex; gap:18px; padding:0 20px; border-bottom:2px solid #e3dfd6;">
+              <span style="font-size:15px; font-weight:700; border-bottom:3px solid #7a5af0; padding:13px 0;">Tasks</span>
+              <span style="font-size:15px; color:#857f74; padding:13px 0;">Invoices</span>
+              <span style="font-size:15px; color:#857f74; padding:13px 0;">Files</span>
+              <span style="font-size:15px; color:#857f74; padding:13px 0;">Messages</span>
+              <span style="font-size:15px; color:#857f74; padding:13px 0;">Notes</span>
+            </div>
+            <!-- body -->
+            <div style="flex:1; padding:20px; display:flex; flex-direction:column; gap:16px;">
+              <!-- mini stats -->
+              <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:11px;">
+                <div style="border:2px solid #cfcabf; border-radius:11px; padding:11px; background:#fff;"><div style="font-family:'Gaegu',cursive; font-size:12px; color:#857f74;">active</div><div style="height:22px; width:30%; background:#cdbcff; border-radius:6px; margin-top:6px;"></div></div>
+                <div style="border:2px solid #cfcabf; border-radius:11px; padding:11px; background:#fff;"><div style="font-family:'Gaegu',cursive; font-size:12px; color:#857f74;">completed</div><div style="height:22px; width:40%; background:#d9d5cc; border-radius:6px; margin-top:6px;"></div></div>
+                <div style="border:2px solid #cfcabf; border-radius:11px; padding:11px; background:#fff;"><div style="font-family:'Gaegu',cursive; font-size:12px; color:#857f74;">billed</div><div style="height:22px; width:55%; background:#d9d5cc; border-radius:6px; margin-top:6px;"></div></div>
+                <div style="border:2px solid #cfcabf; border-radius:11px; padding:11px; background:#fff;"><div style="font-family:'Gaegu',cursive; font-size:12px; color:#857f74;">outstanding</div><div style="height:22px; width:45%; background:#f0d9a0; border-radius:6px; margin-top:6px;"></div></div>
+              </div>
+              <!-- task list -->
+              <div style="border:2px solid #cfcabf; border-radius:13px; background:#fff; padding:15px;">
+                <div style="font-size:16px; font-weight:700; margin-bottom:12px;">Tasks for Acme Co</div>
+                <div style="display:flex; flex-direction:column; gap:9px;">
+                  <div style="display:flex; align-items:center; gap:11px; padding:10px; border:2px solid #e3dfd6; border-radius:10px;"><div style="flex:1;"><div style="height:10px; width:55%; background:#d9d5cc; border-radius:5px;"></div></div><span style="font-size:12px; background:#f1ecff; color:#7a5af0; border:1.5px solid #cdbcff; border-radius:8px; padding:2px 8px;">in progress</span></div>
+                  <div style="display:flex; align-items:center; gap:11px; padding:10px; border:2px solid #e3dfd6; border-radius:10px;"><div style="flex:1;"><div style="height:10px; width:48%; background:#d9d5cc; border-radius:5px;"></div></div><span style="font-size:12px; background:#fdeeee; color:#c0392b; border:1.5px solid #e8b4b4; border-radius:8px; padding:2px 8px;">due today</span></div>
+                  <div style="display:flex; align-items:center; gap:11px; padding:10px; border:2px solid #e3dfd6; border-radius:10px; opacity:.7;"><div style="flex:1;"><div style="height:10px; width:62%; background:#d9d5cc; border-radius:5px;"></div></div><span style="font-size:12px; background:#eef6ef; color:#3f7d53; border:1.5px solid #b9d8c2; border-radius:8px; padding:2px 8px;">done</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p style="margin:14px 2px 0; font-family:'Gaegu',cursive; font-size:16px; color:#c0392b; line-height:1.5;">△ notes: master-detail beats separate list + page since Cristi only juggles 1–3 clients. Sub-tabs (Tasks / Invoices / Files / Messages / Notes) cover the client_profiles + task_history + invoices relations in one place. "New task" / "Message" actions sit in the client context.</p>
+    </section>
+    </sc-if>
+
+    <!-- ============ CHAT ============ -->
+    <sc-if value="{{ isChat }}">
+    <section>
+      <div style="display:flex; align-items:baseline; gap:12px; margin-bottom:18px; flex-wrap:wrap;">
+        <h2 style="margin:0; font-size:24px; font-weight:700;">/chat</h2>
+        <span style="font-family:'Gaegu',cursive; color:#857f74; font-size:16px;">messaging with clients — list · thread · AI suggest-reply ✦</span>
+      </div>
+
+      <div style="border:3px solid #2b2b2b; border-radius:16px; background:#fff; box-shadow:6px 8px 0 rgba(43,43,43,.10); overflow:hidden;">
+        <div style="display:flex; gap:7px; padding:10px 14px; border-bottom:2px solid #2b2b2b; background:#f3f1ec; align-items:center;">
+          <span style="width:11px;height:11px;border-radius:50%;border:1.5px solid #2b2b2b;"></span><span style="width:11px;height:11px;border-radius:50%;border:1.5px solid #2b2b2b;"></span><span style="width:11px;height:11px;border-radius:50%;border:1.5px solid #2b2b2b;"></span>
+          <span style="margin-left:10px; font-family:'Gaegu',cursive; font-size:14px; color:#857f74;">studio.automagic.dev/chat</span>
+        </div>
+        <div style="display:flex; min-height:560px;">
+          <!-- conversation list -->
+          <div style="width:240px; border-right:2px solid #2b2b2b; background:#faf9f6; display:flex; flex-direction:column;">
+            <div style="padding:14px; border-bottom:2px solid #e3dfd6; font-size:18px; font-weight:700;">Conversations</div>
+            <div style="padding:9px; display:flex; flex-direction:column; gap:6px;">
+              <div style="display:flex; gap:10px; padding:10px; border-radius:10px; background:#efeaff; border:2px solid #cdbcff;"><div style="width:34px;height:34px;border-radius:50%;background:repeating-linear-gradient(135deg,#ece9e2,#ece9e2 5px,#f6f4ef 5px,#f6f4ef 10px);border:2px solid #b9b5ab;flex-shrink:0;"></div><div style="flex:1; min-width:0;"><div style="font-size:14px; font-weight:700;">Acme Co</div><div style="height:7px; width:80%; background:#cdbcff; border-radius:4px; margin-top:6px;"></div></div><span style="width:9px;height:9px;border-radius:50%;background:#c0392b;flex-shrink:0;margin-top:4px;"></span></div>
+              <div style="display:flex; gap:10px; padding:10px; border-radius:10px;"><div style="width:34px;height:34px;border-radius:50%;background:repeating-linear-gradient(135deg,#ece9e2,#ece9e2 5px,#f6f4ef 5px,#f6f4ef 10px);border:2px solid #b9b5ab;flex-shrink:0;"></div><div style="flex:1; min-width:0;"><div style="font-size:14px; font-weight:700; color:#6b675f;">Bloom Studio</div><div style="height:7px; width:65%; background:#e3dfd6; border-radius:4px; margin-top:6px;"></div></div></div>
+              <div style="display:flex; gap:10px; padding:10px; border-radius:10px;"><div style="width:34px;height:34px;border-radius:50%;background:repeating-linear-gradient(135deg,#ece9e2,#ece9e2 5px,#f6f4ef 5px,#f6f4ef 10px);border:2px solid #b9b5ab;flex-shrink:0;"></div><div style="flex:1; min-width:0;"><div style="font-size:14px; font-weight:700; color:#6b675f;">Vela Foods</div><div style="height:7px; width:72%; background:#e3dfd6; border-radius:4px; margin-top:6px;"></div></div></div>
+            </div>
+          </div>
+          <!-- thread -->
+          <div style="flex:1; display:flex; flex-direction:column; min-width:0; background:#fdfdfc;">
+            <div style="padding:13px 18px; border-bottom:2px solid #e3dfd6; display:flex; align-items:center; gap:11px;">
+              <div style="width:36px;height:36px;border-radius:50%;background:repeating-linear-gradient(135deg,#ece9e2,#ece9e2 5px,#f6f4ef 5px,#f6f4ef 10px);border:2px solid #b9b5ab;"></div>
+              <div style="flex:1;"><div style="font-size:16px; font-weight:700;">Acme Co</div><div style="font-size:13px; color:#3f7d53;">● online</div></div>
+              <span style="font-size:12px; padding:4px 10px; border:2px solid #cdbcff; background:#f1ecff; color:#7a5af0; border-radius:9px;">linked task #482</span>
+            </div>
+            <!-- messages -->
+            <div style="flex:1; padding:20px; display:flex; flex-direction:column; gap:13px;">
+              <div style="display:flex; gap:10px; max-width:72%;"><div style="width:28px;height:28px;border-radius:50%;background:repeating-linear-gradient(135deg,#ece9e2,#ece9e2 5px,#f6f4ef 5px,#f6f4ef 10px);border:2px solid #b9b5ab;flex-shrink:0;"></div><div style="background:#fff; border:2px solid #e3dfd6; border-radius:4px 13px 13px 13px; padding:11px 13px; flex:1;"><div style="height:8px; width:90%; background:#e3dfd6; border-radius:4px;"></div><div style="height:8px; width:60%; background:#e3dfd6; border-radius:4px; margin-top:6px;"></div></div></div>
+              <div style="display:flex; justify-content:flex-end;"><div style="background:#efeaff; border:2px solid #cdbcff; border-radius:13px 4px 13px 13px; padding:11px 13px; max-width:68%;"><div style="height:8px; width:120px; background:#cdbcff; border-radius:4px;"></div><div style="height:8px; width:80px; background:#cdbcff; border-radius:4px; margin-top:6px;"></div></div></div>
+              <div style="display:flex; gap:10px; max-width:72%;"><div style="width:28px;height:28px;border-radius:50%;background:repeating-linear-gradient(135deg,#ece9e2,#ece9e2 5px,#f6f4ef 5px,#f6f4ef 10px);border:2px solid #b9b5ab;flex-shrink:0;"></div><div style="background:#fff; border:2px solid #e3dfd6; border-radius:4px 13px 13px 13px; padding:11px 13px; flex:1;"><div style="height:8px; width:75%; background:#e3dfd6; border-radius:4px;"></div></div></div>
+            </div>
+            <!-- AI suggest + composer -->
+            <div style="padding:0 18px 16px;">
+              <div style="display:flex; align-items:center; gap:8px; margin-bottom:9px; padding:9px 12px; border:2px dashed #e7cf94; border-radius:11px; background:#fdf8ec;"><span style="color:#c89b2c; font-size:16px;">✦</span><span style="font-size:13px; color:#b08620; font-family:'Gaegu',cursive;">AI suggested reply:</span><span style="flex:1; height:8px; background:#f0e6cf; border-radius:4px;"></span><span style="font-size:12px; padding:3px 11px; background:#fff; border:2px solid #e7cf94; border-radius:8px; color:#b08620;">use</span></div>
+              <div style="display:flex; gap:10px; align-items:center; border:2px solid #cfcabf; border-radius:12px; padding:9px 13px;"><span style="width:20px;height:20px;border:2px solid #b9b5ab;border-radius:5px;"></span><div style="flex:1; font-family:'Gaegu',cursive; color:#a8a399; font-size:15px;">Message Acme Co…</div><div style="padding:7px 18px; background:#7a5af0; color:#fff; border:2.5px solid #2b2b2b; border-radius:9px; font-size:14px; font-weight:700; box-shadow:2px 2px 0 rgba(43,43,43,.2);">Send</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p style="margin:14px 2px 0; font-family:'Gaegu',cursive; font-size:16px; color:#c0392b; line-height:1.5;">△ notes: thread links to the active task (#482) so chat + work stay connected (conversations table). AI suggest-reply uses the Support/Client-update agent — one tap to draft, Cristi edits before sending. Same ChatWindow component the client portal uses, mirrored.</p>
+    </section>
+    </sc-if>
+
+    <!-- ============ CALENDAR ============ -->
+    <sc-if value="{{ isCalendar }}">
+    <section>
+      <div style="display:flex; align-items:baseline; gap:12px; margin-bottom:18px; flex-wrap:wrap;">
+        <h2 style="margin:0; font-size:24px; font-weight:700;">/calendar</h2>
+        <span style="font-family:'Gaegu',cursive; color:#857f74; font-size:16px;">calls · deadlines · accepted tasks · availability — week view</span>
+      </div>
+      <div style="border:3px solid #2b2b2b; border-radius:16px; background:#fff; box-shadow:6px 8px 0 rgba(43,43,43,.10); overflow:hidden;">
+        <div style="display:flex; gap:7px; padding:10px 14px; border-bottom:2px solid #2b2b2b; background:#f3f1ec; align-items:center;">
+          <span style="width:11px;height:11px;border-radius:50%;border:1.5px solid #2b2b2b;"></span><span style="width:11px;height:11px;border-radius:50%;border:1.5px solid #2b2b2b;"></span><span style="width:11px;height:11px;border-radius:50%;border:1.5px solid #2b2b2b;"></span>
+          <span style="margin-left:10px; font-family:'Gaegu',cursive; font-size:14px; color:#857f74;">studio.automagic.dev/calendar</span>
+        </div>
+        <div style="display:flex; min-height:560px;">
+          <!-- sidebar -->
+          <div style="width:204px; border-right:2px solid #2b2b2b; background:#faf9f6; padding:16px 12px; display:flex; flex-direction:column;">
+            <div style="display:flex; align-items:center; gap:8px; padding:0 4px 16px;"><span style="color:#c89b2c; font-size:20px;">✦</span><span style="font-weight:700; font-size:19px;">AutoMagic</span></div>
+            <div style="display:flex; flex-direction:column; gap:3px;">
+              <div style="display:flex; align-items:center; gap:9px; padding:8px 10px; border-radius:9px;"><span style="width:16px;height:16px;border-radius:4px;border:2px solid #b9b5ab;"></span><span style="font-size:16px; color:#6b675f;">Dashboard</span></div>
+              <div style="display:flex; align-items:center; gap:9px; padding:8px 10px; border-radius:9px; background:#efeaff; border-left:3px solid #7a5af0;"><span style="width:16px;height:16px;border-radius:4px;background:#7a5af0;"></span><span style="font-size:16px; font-weight:700;">Calendar</span></div>
+              <div style="display:flex; align-items:center; gap:9px; padding:8px 10px; border-radius:9px;"><span style="width:16px;height:16px;border-radius:4px;border:2px solid #b9b5ab;"></span><span style="font-size:16px; color:#6b675f;">Chat</span></div>
+              <div style="display:flex; align-items:center; gap:9px; padding:8px 10px; border-radius:9px;"><span style="width:16px;height:16px;border-radius:4px;border:2px solid #b9b5ab;"></span><span style="font-size:16px; color:#6b675f;">Notifications</span></div>
+              <div style="display:flex; align-items:center; gap:9px; padding:8px 10px; border-radius:9px;"><span style="width:16px;height:16px;border-radius:4px;border:2px solid #b9b5ab;"></span><span style="font-size:16px; color:#6b675f;">Clients</span></div>
+              <div style="display:flex; align-items:center; gap:9px; padding:8px 10px; border-radius:9px;"><span style="width:16px;height:16px;border-radius:4px;border:2px solid #c89b2c;"></span><span style="font-size:16px; color:#6b675f;">Agents</span><span style="margin-left:auto; color:#c89b2c; font-size:14px;">✦</span></div>
+              <div style="display:flex; align-items:center; gap:9px; padding:8px 10px; border-radius:9px;"><span style="width:16px;height:16px;border-radius:4px;border:2px solid #b9b5ab;"></span><span style="font-size:16px; color:#6b675f;">Tasks</span></div>
+              <div style="display:flex; align-items:center; gap:9px; padding:8px 10px; border-radius:9px;"><span style="width:16px;height:16px;border-radius:4px;border:2px solid #b9b5ab;"></span><span style="font-size:16px; color:#6b675f;">Profile</span></div>
+            </div>
+            <!-- mini month -->
+            <div style="margin-top:18px; border:2px solid #cfcabf; border-radius:11px; padding:11px;">
+              <div style="font-size:13px; font-weight:700; margin-bottom:8px;">June 2026</div>
+              <div style="display:grid; grid-template-columns:repeat(7,1fr); gap:3px;">
+                <div style="height:13px; background:#f3f1ec; border-radius:3px;"></div><div style="height:13px; background:#f3f1ec; border-radius:3px;"></div><div style="height:13px; background:#f3f1ec; border-radius:3px;"></div><div style="height:13px; background:#f3f1ec; border-radius:3px;"></div><div style="height:13px; background:#f3f1ec; border-radius:3px;"></div><div style="height:13px; background:#f3f1ec; border-radius:3px;"></div><div style="height:13px; background:#f3f1ec; border-radius:3px;"></div>
+                <div style="height:13px; background:#ece9e2; border-radius:3px;"></div><div style="height:13px; background:#ece9e2; border-radius:3px;"></div><div style="height:13px; background:#7a5af0; border-radius:3px;"></div><div style="height:13px; background:#ece9e2; border-radius:3px;"></div><div style="height:13px; background:#ece9e2; border-radius:3px;"></div><div style="height:13px; background:#ece9e2; border-radius:3px;"></div><div style="height:13px; background:#ece9e2; border-radius:3px;"></div>
+                <div style="height:13px; background:#ece9e2; border-radius:3px;"></div><div style="height:13px; background:#ece9e2; border-radius:3px;"></div><div style="height:13px; background:#ece9e2; border-radius:3px;"></div><div style="height:13px; background:#ece9e2; border-radius:3px;"></div><div style="height:13px; background:#ece9e2; border-radius:3px;"></div><div style="height:13px; background:#ece9e2; border-radius:3px;"></div><div style="height:13px; background:#ece9e2; border-radius:3px;"></div>
+              </div>
+            </div>
+            <!-- availability -->
+            <div style="margin-top:14px; display:flex; align-items:center; gap:9px; border:2px dashed #b9b5ab; border-radius:11px; padding:10px;"><div style="width:36px;height:20px;border-radius:11px;background:#3f7d53;position:relative;"><span style="position:absolute;right:2px;top:2px;width:16px;height:16px;border-radius:50%;background:#fff;"></span></div><div style="font-size:13px;"><div style="font-weight:700;">Available</div><div style="color:#857f74; font-size:11px;">accepting tasks</div></div></div>
+          </div>
+          <!-- main: week grid -->
+          <div style="flex:1; display:flex; flex-direction:column; min-width:0; background:#fdfdfc;">
+            <div style="height:52px; border-bottom:2px solid #2b2b2b; display:flex; align-items:center; gap:12px; padding:0 18px;">
+              <div style="font-size:20px; font-weight:700;">This week</div>
+              <span style="font-family:'Gaegu',cursive; font-size:14px; color:#857f74;">Jun 8 – 12</span>
+              <div style="margin-left:auto; display:flex; gap:8px; align-items:center;">
+                <span style="width:26px;height:26px;border:2px solid #cfcabf;border-radius:8px; display:flex; align-items:center; justify-content:center; color:#6b675f;">‹</span>
+                <span style="width:26px;height:26px;border:2px solid #cfcabf;border-radius:8px; display:flex; align-items:center; justify-content:center; color:#6b675f;">›</span>
+                <div style="display:flex; border:2px solid #2b2b2b; border-radius:9px; overflow:hidden; font-size:13px;"><span style="padding:5px 11px; color:#6b675f; border-right:2px solid #2b2b2b;">Day</span><span style="padding:5px 11px; background:#7a5af0; color:#fff;">Week</span><span style="padding:5px 11px; color:#6b675f; border-left:2px solid #2b2b2b;">Month</span></div>
+              </div>
+            </div>
+            <!-- legend -->
+            <div style="padding:11px 18px; border-bottom:2px dashed #e3dfd6; display:flex; gap:16px; align-items:center; font-size:13px; color:#6b675f;">
+              <span style="display:flex; align-items:center; gap:6px;"><span style="width:11px;height:11px;border-radius:3px;background:#7a5af0;"></span>Call</span>
+              <span style="display:flex; align-items:center; gap:6px;"><span style="width:11px;height:11px;border-radius:3px;background:#c0392b;"></span>Deadline</span>
+              <span style="display:flex; align-items:center; gap:6px;"><span style="width:11px;height:11px;border-radius:3px;background:#c89b2c;"></span>Task / agent ✦</span>
+              <span style="display:flex; align-items:center; gap:6px;"><span style="width:11px;height:11px;border-radius:3px;background:#3f7d53;"></span>Blocked / off</span>
+            </div>
+            <!-- grid -->
+            <div style="flex:1; display:flex; padding:12px 14px;">
+              <div style="width:42px; display:flex; flex-direction:column; gap:36px; padding-top:34px; font-family:'Gaegu',cursive; font-size:12px; color:#a8a399;"><span>9a</span><span>11a</span><span>1p</span><span>3p</span><span>5p</span></div>
+              <div style="flex:1; display:grid; grid-template-columns:repeat(5,1fr); gap:8px;">
+                <!-- Mon -->
+                <div style="display:flex; flex-direction:column;"><div style="text-align:center; font-size:13px; font-weight:700; padding-bottom:8px;">Mon 8</div><div style="flex:1; border:2px solid #e3dfd6; border-radius:9px; padding:6px; display:flex; flex-direction:column; gap:6px;"><div style="background:#efeaff; border:1.5px solid #cdbcff; border-left:3px solid #7a5af0; border-radius:6px; padding:6px;"><div style="font-size:11px; font-weight:700; color:#7a5af0;">9:30 Acme call</div></div><div style="margin-top:auto; background:#fdf8ec; border:1.5px solid #e7cf94; border-radius:6px; padding:6px;"><div style="font-size:11px; color:#b08620;">Research run ✦</div></div></div></div>
+                <!-- Tue -->
+                <div style="display:flex; flex-direction:column;"><div style="text-align:center; font-size:13px; font-weight:700; padding-bottom:8px;">Tue 9</div><div style="flex:1; border:2px solid #e3dfd6; border-radius:9px; padding:6px; display:flex; flex-direction:column; gap:6px;"><div style="margin-top:60px; background:#fdeeee; border:1.5px solid #e8b4b4; border-left:3px solid #c0392b; border-radius:6px; padding:6px;"><div style="font-size:11px; font-weight:700; color:#c0392b;">Report due 2p</div></div></div></div>
+                <!-- Wed -->
+                <div style="display:flex; flex-direction:column;"><div style="text-align:center; font-size:13px; font-weight:700; padding-bottom:8px; color:#7a5af0;">Wed 10</div><div style="flex:1; border:2px solid #cdbcff; border-radius:9px; padding:6px; display:flex; flex-direction:column; gap:6px; background:#faf8ff;"><div style="background:#efeaff; border:1.5px solid #cdbcff; border-left:3px solid #7a5af0; border-radius:6px; padding:6px;"><div style="font-size:11px; font-weight:700; color:#7a5af0;">10a Bloom call</div></div><div style="background:#f3f1ec; border:1.5px solid #d9d5cc; border-radius:6px; padding:6px;"><div style="font-size:11px; color:#6b675f;">Task block</div></div></div></div>
+                <!-- Thu -->
+                <div style="display:flex; flex-direction:column;"><div style="text-align:center; font-size:13px; font-weight:700; padding-bottom:8px;">Thu 11</div><div style="flex:1; border:2px solid #e3dfd6; border-radius:9px; padding:6px; display:flex; flex-direction:column; gap:6px;"><div style="margin-top:auto; background:#eef6ef; border:1.5px solid #b9d8c2; border-left:3px solid #3f7d53; border-radius:6px; padding:6px;"><div style="font-size:11px; color:#3f7d53;">PM blocked</div></div></div></div>
+                <!-- Fri -->
+                <div style="display:flex; flex-direction:column;"><div style="text-align:center; font-size:13px; font-weight:700; padding-bottom:8px;">Fri 12</div><div style="flex:1; border:2px solid #e3dfd6; border-radius:9px; padding:6px; display:flex; flex-direction:column; gap:6px;"><div style="margin-top:30px; background:#fdeeee; border:1.5px solid #e8b4b4; border-left:3px solid #c0392b; border-radius:6px; padding:6px;"><div style="font-size:11px; font-weight:700; color:#c0392b;">Invoice #18 due</div></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p style="margin:14px 2px 0; font-family:'Gaegu',cursive; font-size:16px; color:#c0392b; line-height:1.5;">△ notes: events come from 3 sources — client calls, task due dates, and agent runs — color-coded so Cristi reads load at a glance. Availability toggle (sidebar) flips the studio "accepting tasks" flag that gates new proposals. Day/Week/Month switch top-right.</p>
+    </section>
+    </sc-if>
+
+    <!-- ============ NOTIFICATIONS ============ -->
+    <sc-if value="{{ isNotifications }}">
+    <section>
+      <div style="display:flex; align-items:baseline; gap:12px; margin-bottom:18px; flex-wrap:wrap;">
+        <h2 style="margin:0; font-size:24px; font-weight:700;">/notifications</h2>
+        <span style="font-family:'Gaegu',cursive; color:#857f74; font-size:16px;">task changes · messages · proposals · payments · deadlines</span>
+      </div>
+      <div style="border:3px solid #2b2b2b; border-radius:16px; background:#fff; box-shadow:6px 8px 0 rgba(43,43,43,.10); overflow:hidden;">
+        <div style="display:flex; gap:7px; padding:10px 14px; border-bottom:2px solid #2b2b2b; background:#f3f1ec; align-items:center;">
+          <span style="width:11px;height:11px;border-radius:50%;border:1.5px solid #2b2b2b;"></span><span style="width:11px;height:11px;border-radius:50%;border:1.5px solid #2b2b2b;"></span><span style="width:11px;height:11px;border-radius:50%;border:1.5px solid #2b2b2b;"></span>
+          <span style="margin-left:10px; font-family:'Gaegu',cursive; font-size:14px; color:#857f74;">studio.automagic.dev/notifications</span>
+        </div>
+        <div style="display:flex; min-height:560px;">
+          <!-- sidebar -->
+          <div style="width:204px; border-right:2px solid #2b2b2b; background:#faf9f6; padding:16px 12px; display:flex; flex-direction:column;">
+            <div style="display:flex; align-items:center; gap:8px; padding:0 4px 16px;"><span style="color:#c89b2c; font-size:20px;">✦</span><span style="font-weight:700; font-size:19px;">AutoMagic</span></div>
+            <div style="display:flex; flex-direction:column; gap:3px;">
+              <div style="display:flex; align-items:center; gap:9px; padding:8px 10px; border-radius:9px;"><span style="width:16px;height:16px;border-radius:4px;border:2px solid #b9b5ab;"></span><span style="font-size:16px; color:#6b675f;">Dashboard</span></div>
+              <div style="display:flex; align-items:center; gap:9px; padding:8px 10px; border-radius:9px;"><span style="width:16px;height:16px;border-radius:4px;border:2px solid #b9b5ab;"></span><span style="font-size:16px; color:#6b675f;">Calendar</span></div>
+              <div style="display:flex; align-items:center; gap:9px; padding:8px 10px; border-radius:9px;"><span style="width:16px;height:16px;border-radius:4px;border:2px solid #b9b5ab;"></span><span style="font-size:16px; color:#6b675f;">Chat</span></div>
+              <div style="display:flex; align-items:center; gap:9px; padding:8px 10px; border-radius:9px; background:#efeaff; border-left:3px solid #7a5af0;"><span style="width:16px;height:16px;border-radius:4px;background:#7a5af0;"></span><span style="font-size:16px; font-weight:700;">Notifications</span><span style="margin-left:auto; font-size:12px; background:#c0392b; color:#fff; border-radius:8px; padding:1px 6px;">6</span></div>
+              <div style="display:flex; align-items:center; gap:9px; padding:8px 10px; border-radius:9px;"><span style="width:16px;height:16px;border-radius:4px;border:2px solid #b9b5ab;"></span><span style="font-size:16px; color:#6b675f;">Clients</span></div>
+              <div style="display:flex; align-items:center; gap:9px; padding:8px 10px; border-radius:9px;"><span style="width:16px;height:16px;border-radius:4px;border:2px solid #c89b2c;"></span><span style="font-size:16px; color:#6b675f;">Agents</span><span style="margin-left:auto; color:#c89b2c; font-size:14px;">✦</span></div>
+              <div style="display:flex; align-items:center; gap:9px; padding:8px 10px; border-radius:9px;"><span style="width:16px;height:16px;border-radius:4px;border:2px solid #b9b5ab;"></span><span style="font-size:16px; color:#6b675f;">Tasks</span></div>
+              <div style="display:flex; align-items:center; gap:9px; padding:8px 10px; border-radius:9px;"><span style="width:16px;height:16px;border-radius:4px;border:2px solid #b9b5ab;"></span><span style="font-size:16px; color:#6b675f;">Profile</span></div>
+            </div>
+          </div>
+          <!-- main -->
+          <div style="flex:1; display:flex; flex-direction:column; min-width:0; background:#fdfdfc;">
+            <div style="height:52px; border-bottom:2px solid #2b2b2b; display:flex; align-items:center; gap:12px; padding:0 18px;">
+              <div style="font-size:20px; font-weight:700;">Notifications</div>
+              <span style="margin-left:auto; font-family:'Gaegu',cursive; font-size:14px; color:#7a5af0;">mark all read</span>
+              <span style="padding:5px 12px; border:2px solid #cfcabf; border-radius:9px; font-size:14px; color:#6b675f;">settings ▾</span>
+            </div>
+            <!-- type filters -->
+            <div style="padding:12px 18px; border-bottom:2px dashed #e3dfd6; display:flex; gap:8px; flex-wrap:wrap;">
+              <span style="font-size:13px; padding:4px 13px; background:#7a5af0; color:#fff; border:2px solid #2b2b2b; border-radius:20px;">All</span>
+              <span style="font-size:13px; padding:4px 13px; border:2px solid #cfcabf; border-radius:20px; color:#6b675f;">Tasks</span>
+              <span style="font-size:13px; padding:4px 13px; border:2px solid #cfcabf; border-radius:20px; color:#6b675f;">Messages</span>
+              <span style="font-size:13px; padding:4px 13px; border:2px solid #cfcabf; border-radius:20px; color:#6b675f;">Proposals</span>
+              <span style="font-size:13px; padding:4px 13px; border:2px solid #cfcabf; border-radius:20px; color:#6b675f;">Payments</span>
+            </div>
+            <div style="flex:1; padding:18px; display:flex; flex-direction:column; gap:18px;">
+              <!-- Today -->
+              <div>
+                <div style="font-family:'Gaegu',cursive; font-size:15px; color:#857f74; margin-bottom:10px;">Today</div>
+                <div style="display:flex; flex-direction:column; gap:8px;">
+                  <div style="display:flex; gap:12px; align-items:flex-start; padding:12px; border:2px solid #cdbcff; border-radius:11px; background:#faf8ff;"><span style="width:13px;height:13px;border-radius:4px;background:#7a5af0;margin-top:3px;flex-shrink:0;"></span><div style="flex:1;"><div style="font-size:15px; font-weight:700;">New proposal accepted</div><div style="height:8px; width:60%; background:#eceae3; border-radius:4px; margin-top:7px;"></div></div><span style="font-size:12px; color:#a8a399;">2m</span><span style="width:9px;height:9px;border-radius:50%;background:#c0392b;flex-shrink:0;margin-top:5px;"></span></div>
+                  <div style="display:flex; gap:12px; align-items:flex-start; padding:12px; border:2px solid #e8b4b4; border-radius:11px; background:#fdf4f4;"><span style="width:13px;height:13px;border-radius:4px;background:#c0392b;margin-top:3px;flex-shrink:0;"></span><div style="flex:1;"><div style="font-size:15px; font-weight:700;">Task #482 due in 2 hours</div><div style="height:8px; width:50%; background:#eceae3; border-radius:4px; margin-top:7px;"></div></div><span style="font-size:12px; color:#a8a399;">40m</span><span style="width:9px;height:9px;border-radius:50%;background:#c0392b;flex-shrink:0;margin-top:5px;"></span></div>
+                  <div style="display:flex; gap:12px; align-items:flex-start; padding:12px; border:2px solid #e3dfd6; border-radius:11px; background:#fff;"><span style="width:13px;height:13px;border-radius:4px;background:#857f74;margin-top:3px;flex-shrink:0;"></span><div style="flex:1;"><div style="font-size:15px; font-weight:700;">New message from Acme Co</div><div style="height:8px; width:70%; background:#eceae3; border-radius:4px; margin-top:7px;"></div></div><span style="font-size:12px; color:#a8a399;">1h</span><span style="width:9px;height:9px;border-radius:50%;background:#c0392b;flex-shrink:0;margin-top:5px;"></span></div>
+                </div>
+              </div>
+              <!-- Earlier -->
+              <div>
+                <div style="font-family:'Gaegu',cursive; font-size:15px; color:#857f74; margin-bottom:10px;">Earlier</div>
+                <div style="display:flex; flex-direction:column; gap:8px;">
+                  <div style="display:flex; gap:12px; align-items:flex-start; padding:12px; border:2px solid #e3dfd6; border-radius:11px; background:#fff; opacity:.72;"><span style="width:13px;height:13px;border-radius:4px;background:#3f7d53;margin-top:3px;flex-shrink:0;"></span><div style="flex:1;"><div style="font-size:15px; font-weight:700;">Payment received · $500</div><div style="height:8px; width:45%; background:#eceae3; border-radius:4px; margin-top:7px;"></div></div><span style="font-size:12px; color:#a8a399;">Yest</span></div>
+                  <div style="display:flex; gap:12px; align-items:flex-start; padding:12px; border:2px solid #e3dfd6; border-radius:11px; background:#fff; opacity:.72;"><span style="width:13px;height:13px;border-radius:4px;background:#c89b2c;margin-top:3px;flex-shrink:0;"></span><div style="flex:1;"><div style="font-size:15px; font-weight:700;">Research agent finished a run ✦</div><div style="height:8px; width:55%; background:#eceae3; border-radius:4px; margin-top:7px;"></div></div><span style="font-size:12px; color:#a8a399;">Yest</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p style="margin:14px 2px 0; font-family:'Gaegu',cursive; font-size:16px; color:#c0392b; line-height:1.5;">△ notes: same notification types from the blueprint, color-keyed to source (proposal/deadline/message/payment/agent). Grouped Today / Earlier, unread dot on the right, type filter chips up top. The topbar bell badge is just the unread count of this list.</p>
+    </section>
+    </sc-if>
+
+    <!-- ============ PROFILE ============ -->
+    <sc-if value="{{ isProfile }}">
+    <section>
+      <div style="display:flex; align-items:baseline; gap:12px; margin-bottom:18px; flex-wrap:wrap;">
+        <h2 style="margin:0; font-size:24px; font-weight:700;">/profile</h2>
+        <span style="font-family:'Gaegu',cursive; color:#857f74; font-size:16px;">skills · experience · certifications · portfolio · availability · ID</span>
+      </div>
+      <div style="border:3px solid #2b2b2b; border-radius:16px; background:#fff; box-shadow:6px 8px 0 rgba(43,43,43,.10); overflow:hidden;">
+        <div style="display:flex; gap:7px; padding:10px 14px; border-bottom:2px solid #2b2b2b; background:#f3f1ec; align-items:center;">
+          <span style="width:11px;height:11px;border-radius:50%;border:1.5px solid #2b2b2b;"></span><span style="width:11px;height:11px;border-radius:50%;border:1.5px solid #2b2b2b;"></span><span style="width:11px;height:11px;border-radius:50%;border:1.5px solid #2b2b2b;"></span>
+          <span style="margin-left:10px; font-family:'Gaegu',cursive; font-size:14px; color:#857f74;">studio.automagic.dev/profile</span>
+        </div>
+        <div style="display:flex; min-height:560px;">
+          <!-- sidebar -->
+          <div style="width:204px; border-right:2px solid #2b2b2b; background:#faf9f6; padding:16px 12px; display:flex; flex-direction:column;">
+            <div style="display:flex; align-items:center; gap:8px; padding:0 4px 16px;"><span style="color:#c89b2c; font-size:20px;">✦</span><span style="font-weight:700; font-size:19px;">AutoMagic</span></div>
+            <div style="display:flex; flex-direction:column; gap:3px;">
+              <div style="display:flex; align-items:center; gap:9px; padding:8px 10px; border-radius:9px;"><span style="width:16px;height:16px;border-radius:4px;border:2px solid #b9b5ab;"></span><span style="font-size:16px; color:#6b675f;">Dashboard</span></div>
+              <div style="display:flex; align-items:center; gap:9px; padding:8px 10px; border-radius:9px;"><span style="width:16px;height:16px;border-radius:4px;border:2px solid #b9b5ab;"></span><span style="font-size:16px; color:#6b675f;">Calendar</span></div>
+              <div style="display:flex; align-items:center; gap:9px; padding:8px 10px; border-radius:9px;"><span style="width:16px;height:16px;border-radius:4px;border:2px solid #b9b5ab;"></span><span style="font-size:16px; color:#6b675f;">Chat</span></div>
+              <div style="display:flex; align-items:center; gap:9px; padding:8px 10px; border-radius:9px;"><span style="width:16px;height:16px;border-radius:4px;border:2px solid #b9b5ab;"></span><span style="font-size:16px; color:#6b675f;">Notifications</span></div>
+              <div style="display:flex; align-items:center; gap:9px; padding:8px 10px; border-radius:9px;"><span style="width:16px;height:16px;border-radius:4px;border:2px solid #b9b5ab;"></span><span style="font-size:16px; color:#6b675f;">Clients</span></div>
+              <div style="display:flex; align-items:center; gap:9px; padding:8px 10px; border-radius:9px;"><span style="width:16px;height:16px;border-radius:4px;border:2px solid #c89b2c;"></span><span style="font-size:16px; color:#6b675f;">Agents</span><span style="margin-left:auto; color:#c89b2c; font-size:14px;">✦</span></div>
+              <div style="display:flex; align-items:center; gap:9px; padding:8px 10px; border-radius:9px;"><span style="width:16px;height:16px;border-radius:4px;border:2px solid #b9b5ab;"></span><span style="font-size:16px; color:#6b675f;">Tasks</span></div>
+              <div style="display:flex; align-items:center; gap:9px; padding:8px 10px; border-radius:9px; background:#efeaff; border-left:3px solid #7a5af0;"><span style="width:16px;height:16px;border-radius:4px;background:#7a5af0;"></span><span style="font-size:16px; font-weight:700;">Profile</span></div>
+            </div>
+          </div>
+          <!-- main -->
+          <div style="flex:1; display:flex; flex-direction:column; min-width:0; background:#fdfdfc;">
+            <!-- profile header -->
+            <div style="padding:20px; border-bottom:2px solid #e3dfd6; display:flex; align-items:center; gap:16px;">
+              <div style="width:66px;height:66px;border-radius:50%;background:repeating-linear-gradient(135deg,#ece9e2,#ece9e2 6px,#f6f4ef 6px,#f6f4ef 12px);border:2px solid #b9b5ab;"></div>
+              <div style="flex:1;"><div style="display:flex; align-items:center; gap:10px;"><div style="font-size:23px; font-weight:700;">Cristi Șatcovschi</div><span style="font-size:12px; padding:3px 10px; background:#eef6ef; color:#3f7d53; border:1.5px solid #b9d8c2; border-radius:20px;">✓ ID verified</span></div><div style="font-size:15px; color:#857f74; margin-top:4px;">Virtual Assistant · Automation · Chișinău (UTC+3)</div></div>
+              <div style="padding:8px 16px; border:2.5px solid #2b2b2b; border-radius:10px; font-size:14px; font-weight:700; box-shadow:2px 2px 0 rgba(43,43,43,.15);">Edit profile</div>
+            </div>
+            <!-- body two-col -->
+            <div style="flex:1; padding:20px; display:grid; grid-template-columns:1.6fr 1fr; gap:18px; align-items:start;">
+              <!-- left -->
+              <div style="display:flex; flex-direction:column; gap:16px;">
+                <div style="border:2px solid #cfcabf; border-radius:13px; background:#fff; padding:15px;">
+                  <div style="font-size:16px; font-weight:700; margin-bottom:12px;">Skills</div>
+                  <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                    <span style="font-size:13px; padding:4px 12px; background:#f1ecff; color:#7a5af0; border:1.5px solid #cdbcff; border-radius:20px;">Inbox &amp; calendar</span>
+                    <span style="font-size:13px; padding:4px 12px; background:#f1ecff; color:#7a5af0; border:1.5px solid #cdbcff; border-radius:20px;">Research</span>
+                    <span style="font-size:13px; padding:4px 12px; background:#f1ecff; color:#7a5af0; border:1.5px solid #cdbcff; border-radius:20px;">CRM &amp; sheets</span>
+                    <span style="font-size:13px; padding:4px 12px; background:#f1ecff; color:#7a5af0; border:1.5px solid #cdbcff; border-radius:20px;">Ecommerce</span>
+                    <span style="font-size:13px; padding:4px 12px; background:#f1ecff; color:#7a5af0; border:1.5px solid #cdbcff; border-radius:20px;">Automation</span>
+                    <span style="font-size:13px; padding:4px 12px; border:1.5px dashed #b9b5ab; color:#857f74; border-radius:20px;">+ add</span>
+                  </div>
+                </div>
+                <div style="border:2px solid #cfcabf; border-radius:13px; background:#fff; padding:15px;">
+                  <div style="font-size:16px; font-weight:700; margin-bottom:12px;">Experience</div>
+                  <div style="display:flex; flex-direction:column; gap:11px;">
+                    <div style="display:flex; gap:11px;"><div style="width:30px;height:30px;border-radius:8px;background:#ece9e2; border:1.5px solid #d9d5cc; flex-shrink:0;"></div><div style="flex:1;"><div style="height:10px; width:45%; background:#d9d5cc; border-radius:5px;"></div><div style="height:8px; width:70%; background:#eceae3; border-radius:4px; margin-top:6px;"></div></div></div>
+                    <div style="display:flex; gap:11px;"><div style="width:30px;height:30px;border-radius:8px;background:#ece9e2; border:1.5px solid #d9d5cc; flex-shrink:0;"></div><div style="flex:1;"><div style="height:10px; width:38%; background:#d9d5cc; border-radius:5px;"></div><div style="height:8px; width:62%; background:#eceae3; border-radius:4px; margin-top:6px;"></div></div></div>
+                  </div>
+                </div>
+                <div style="border:2px solid #cfcabf; border-radius:13px; background:#fff; padding:15px;">
+                  <div style="font-size:16px; font-weight:700; margin-bottom:12px;">Portfolio</div>
+                  <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:10px;">
+                    <div style="aspect-ratio:4/3; border-radius:9px; background:repeating-linear-gradient(135deg,#ece9e2,#ece9e2 7px,#f5f3ee 7px,#f5f3ee 14px); border:2px dashed #b9b5ab; display:flex; align-items:center; justify-content:center; font-family:ui-monospace,monospace; font-size:10px; color:#a8a399;">case study</div>
+                    <div style="aspect-ratio:4/3; border-radius:9px; background:repeating-linear-gradient(135deg,#ece9e2,#ece9e2 7px,#f5f3ee 7px,#f5f3ee 14px); border:2px dashed #b9b5ab; display:flex; align-items:center; justify-content:center; font-family:ui-monospace,monospace; font-size:10px; color:#a8a399;">workflow</div>
+                    <div style="aspect-ratio:4/3; border-radius:9px; background:repeating-linear-gradient(135deg,#ece9e2,#ece9e2 7px,#f5f3ee 7px,#f5f3ee 14px); border:2px dashed #b9b5ab; display:flex; align-items:center; justify-content:center; font-family:ui-monospace,monospace; font-size:10px; color:#a8a399;">demo</div>
+                  </div>
+                </div>
+              </div>
+              <!-- right -->
+              <div style="display:flex; flex-direction:column; gap:16px;">
+                <div style="border:2px solid #cfcabf; border-radius:13px; background:#fff; padding:15px;">
+                  <div style="font-size:16px; font-weight:700; margin-bottom:12px;">Rate &amp; availability</div>
+                  <div style="display:flex; justify-content:space-between; align-items:center; padding:9px 0; border-bottom:1.5px dashed #e3dfd6;"><span style="font-size:14px; color:#6b675f;">Retainer</span><span style="font-size:15px; font-weight:700;">$500 / wk</span></div>
+                  <div style="display:flex; justify-content:space-between; align-items:center; padding:9px 0; border-bottom:1.5px dashed #e3dfd6;"><span style="font-size:14px; color:#6b675f;">Active clients</span><span style="font-size:15px; font-weight:700;">2 / 3</span></div>
+                  <div style="display:flex; justify-content:space-between; align-items:center; padding:9px 0;"><span style="font-size:14px; color:#6b675f;">Status</span><div style="display:flex; align-items:center; gap:7px;"><div style="width:34px;height:19px;border-radius:11px;background:#3f7d53;position:relative;"><span style="position:absolute;right:2px;top:2px;width:15px;height:15px;border-radius:50%;background:#fff;"></span></div><span style="font-size:13px; color:#3f7d53; font-weight:700;">Open</span></div></div>
+                </div>
+                <div style="border:2px solid #cfcabf; border-radius:13px; background:#fff; padding:15px;">
+                  <div style="font-size:16px; font-weight:700; margin-bottom:12px;">Certifications</div>
+                  <div style="display:flex; flex-direction:column; gap:9px;">
+                    <div style="display:flex; align-items:center; gap:10px; padding:9px; border:2px solid #e3dfd6; border-radius:10px;"><span style="width:18px;height:18px;border-radius:5px;background:#c89b2c;flex-shrink:0;"></span><div style="height:9px; width:65%; background:#d9d5cc; border-radius:5px;"></div></div>
+                    <div style="display:flex; align-items:center; gap:10px; padding:9px; border:2px solid #e3dfd6; border-radius:10px;"><span style="width:18px;height:18px;border-radius:5px;background:#c89b2c;flex-shrink:0;"></span><div style="height:9px; width:50%; background:#d9d5cc; border-radius:5px;"></div></div>
+                  </div>
+                </div>
+                <div style="border:2px solid #cfcabf; border-radius:13px; background:#fff; padding:15px;">
+                  <div style="font-size:16px; font-weight:700; margin-bottom:10px;">Verification &amp; account</div>
+                  <div style="display:flex; flex-direction:column; gap:8px; font-size:14px; color:#6b675f;">
+                    <div style="display:flex; justify-content:space-between;"><span>Email</span><span style="color:#3f7d53; font-weight:700;">✓ verified</span></div>
+                    <div style="display:flex; justify-content:space-between;"><span>ID document</span><span style="color:#3f7d53; font-weight:700;">✓ verified</span></div>
+                    <div style="display:flex; justify-content:space-between;"><span>Payout (Stripe)</span><span style="color:#3f7d53; font-weight:700;">✓ connected</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p style="margin:14px 2px 0; font-family:'Gaegu',cursive; font-size:16px; color:#c0392b; line-height:1.5;">△ notes: maps to va_profiles — skills, experience, certifications, rate, availability, verification_status. Availability toggle here is the same flag as the calendar one. Portfolio pulls from completed tasks / case studies that also feed the public www site.</p>
+    </section>
+    </sc-if>
+
+    <!-- MORETABS -->
+
+    <footer style="margin-top:40px; text-align:center; font-family:'Gaegu',cursive; font-size:15px; color:#9a958a;">AutoMagic studio · structural wireframes · switch screens with the tabs above ✦</footer>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { tab: 'shell' };
+  renderVals() {
+    const defs = [
+      { id: 'shell', label: 'Shell + Nav' },
+      { id: 'dashboard', label: 'Dashboard' },
+      { id: 'tasks', label: 'Tasks' },
+      { id: 'taskdetail', label: 'Task Detail + AI' },
+      { id: 'agents', label: 'Agents' },
+      { id: 'clients', label: 'Clients' },
+      { id: 'chat', label: 'Chat' },
+      { id: 'calendar', label: 'Calendar' },
+      { id: 'notifications', label: 'Notifications' },
+      { id: 'profile', label: 'Profile' },
+    ];
+    const active = this.state.tab;
+    const tabs = defs.map(d => {
+      const on = d.id === active;
+      return {
+        label: d.label,
+        onClick: () => this.setState({ tab: d.id }),
+        style: [
+          'font-family:Kalam,cursive', 'font-size:16px', 'cursor:pointer',
+          'padding:7px 15px 9px', 'border-radius:11px 9px 12px 8px/8px 12px 9px 11px',
+          'border:2.5px solid #2b2b2b',
+          on ? 'background:#7a5af0' : 'background:#fff',
+          on ? 'color:#fff' : 'color:#2b2b2b',
+          on ? 'box-shadow:2px 3px 0 rgba(43,43,43,.25)' : 'box-shadow:2px 3px 0 rgba(43,43,43,.10)',
+          on ? 'font-weight:700' : 'font-weight:400',
+        ].join(';'),
+      };
+    });
+    return {
+      tabs,
+      isShell: active === 'shell',
+      isDashboard: active === 'dashboard',
+      isTasks: active === 'tasks',
+      isTaskDetail: active === 'taskdetail',
+      isAgents: active === 'agents',
+      isClients: active === 'clients',
+      isChat: active === 'chat',
+      isCalendar: active === 'calendar',
+      isNotifications: active === 'notifications',
+      isProfile: active === 'profile',
+    };
+  }
+}
+</script>
+</body>
+</html>

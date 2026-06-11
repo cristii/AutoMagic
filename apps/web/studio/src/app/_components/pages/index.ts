@@ -1,0 +1,11 @@
+export { AgentWorkspacePage, AgentsPage } from "./agents";
+export { CalendarPage } from "./calendar";
+export { ClientsPage } from "./clients";
+export { EarningsPage } from "./earnings";
+export { MessagesPage } from "./messages";
+export { NotificationsPage } from "./notifications";
+export { ProfilePage } from "./profile";
+export { ResourcePage } from "./resource";
+export { SettingsPage } from "./settings";
+export { SupportPage } from "./support";
+export { TaskDetailPage, TasksPage } from "./tasks";
