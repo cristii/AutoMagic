@@ -18,9 +18,13 @@
         "name": "next"
       }
     ],
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
-    }
+      "@/*": ["./src/*"],
+      "@automagic/theme": ["../../../packages/theme/src/index.ts"],
+      "@automagic/ui": ["../../../packages/ui/src/index.ts"]
+    },
+    "typeRoots": ["./node_modules/@types"]
   },
   "include": [
     "next-env.d.ts",

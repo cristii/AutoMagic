@@ -1,1 +1,1 @@
-export * from "./primitives/Button";
+export * from "./src";
