@@ -1,14 +1,11 @@
 import { Badge, Card } from "@automagic/ui";
 
-import { PageHeader } from "../../_components/page-header";
 import { ProgressBar } from "../../_components/progress-bar";
 import { badges, certificates } from "../../_data/sandbox";
 
 export default function AchievementsPage() {
   return (
     <div className="sandbox-page">
-      <PageHeader route="/achievements" />
-
       <Card title="Level progress" eyebrow="Level 4 · 1,840 XP">
         <h3>Apprentice VA</h3>
         <div className="inline-row">

@@ -1,16 +1,10 @@
 import { Badge, Button, Card } from "@automagic/ui";
 
-import { PageHeader } from "../../_components/page-header";
 import { portfolioItems } from "../../_data/sandbox";
 
 export default function PortfolioPage() {
   return (
     <div className="sandbox-page">
-      <PageHeader
-        route="/portfolio"
-        action={<Button label="Share to public profile" variant="primary" />}
-      />
-
       <section className="portfolio-grid">
         {portfolioItems.map((item) => (
           <Card className="portfolio-tile" key={item.id}>

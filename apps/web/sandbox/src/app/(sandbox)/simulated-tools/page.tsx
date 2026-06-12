@@ -1,6 +1,5 @@
-import { Badge, Button, Card, Tabs } from "@automagic/ui";
+import { Badge, Card, Tabs } from "@automagic/ui";
 
-import { PageHeader } from "../../_components/page-header";
 import { simulatedTools } from "../../_simulated-tools";
 
 export default function SimulatedToolsPage() {
@@ -10,8 +9,6 @@ export default function SimulatedToolsPage() {
 
   return (
     <div className="sandbox-page">
-      <PageHeader route="/simulated-tools" action={<Button label="Reset data" />} />
-
       <Tabs
         activeId={activeTool.type}
         label="Simulated tools"

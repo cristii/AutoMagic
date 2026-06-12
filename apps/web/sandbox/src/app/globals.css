@@ -215,7 +215,7 @@ th {
   position: sticky;
   top: 0;
   z-index: 10;
-  min-height: 78px;
+  min-height: 0;
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto auto;
   gap: var(--am-grid-gap);
@@ -228,7 +228,7 @@ th {
 
 .am-topbar h1 {
   margin: 0;
-  font-size: var(--am-font-size-xl);
+  font-size: var(--am-font-size-xxl);
   line-height: var(--am-line-height-heading);
   font-weight: var(--am-font-weight-bold);
   letter-spacing: 0;
@@ -243,15 +243,6 @@ th {
 
 .am-topbar > div:first-child {
   min-width: 0;
-}
-
-.am-topbar-spacer {
-  min-width: 0;
-}
-
-.am-topbar-global .am-topbar-meta,
-.am-topbar-global .am-topbar-actions {
-  justify-self: end;
 }
 
 .am-topbar-meta,
@@ -272,39 +263,6 @@ th {
   flex-direction: column;
   gap: var(--am-space-xxl);
   min-width: 0;
-}
-
-.page-header {
-  display: flex;
-  justify-content: space-between;
-  gap: var(--am-grid-gap);
-  align-items: flex-start;
-  min-width: 0;
-}
-
-.page-header > * {
-  min-width: 0;
-}
-
-.page-header-action {
-  flex-shrink: 0;
-  display: flex;
-  justify-content: flex-end;
-}
-
-.page-header h1 {
-  margin: 0;
-  font-size: var(--am-font-size-xxl);
-  line-height: var(--am-line-height-heading);
-  font-weight: var(--am-font-weight-bold);
-  letter-spacing: 0;
-}
-
-.page-header p {
-  max-width: 760px;
-  margin: 8px 0 0;
-  color: var(--am-muted);
-  line-height: var(--am-line-height-relaxed);
 }
 
 .am-card {
@@ -1004,26 +962,8 @@ th {
     align-items: start;
   }
 
-  .am-topbar-global .am-topbar-spacer {
-    display: none;
-  }
-
   .am-topbar-meta,
   .am-topbar-actions {
-    justify-content: flex-start;
-  }
-
-  .am-topbar-global .am-topbar-meta,
-  .am-topbar-global .am-topbar-actions {
-    justify-self: start;
-  }
-
-  .page-header {
-    display: grid;
-    grid-template-columns: 1fr;
-  }
-
-  .page-header-action {
     justify-content: flex-start;
   }
 }
@@ -1054,7 +994,7 @@ th {
     padding: var(--am-card-padding-compact);
   }
 
-  .page-header h1 {
+  .am-topbar h1 {
     font-size: var(--am-font-size-mobile-title);
   }
 

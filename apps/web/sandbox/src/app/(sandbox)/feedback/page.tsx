@@ -1,14 +1,11 @@
 import { Badge, Button, Card } from "@automagic/ui";
 
-import { PageHeader } from "../../_components/page-header";
 import { ProgressBar } from "../../_components/progress-bar";
 import { feedbackHistory } from "../../_data/sandbox";
 
 export default function FeedbackPage() {
   return (
     <div className="sandbox-page">
-      <PageHeader route="/feedback" />
-
       <section className="two-column-grid">
         <Card title="Score trend" eyebrow="Last 6 missions">
           <div className="metric">

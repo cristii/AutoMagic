@@ -1,6 +1,5 @@
 import { Badge, Button, Card } from "@automagic/ui";
 
-import { PageHeader } from "../../_components/page-header";
 import { ProgressBar } from "../../_components/progress-bar";
 import {
   dashboardMetrics,
@@ -15,11 +14,6 @@ export default function DashboardPage() {
 
   return (
     <div className="sandbox-page">
-      <PageHeader
-        route="/dashboard"
-        action={<Button href="/missions/generate" variant="primary" label="Generate mission" />}
-      />
-
       <section className="metric-row">
         {dashboardMetrics.map((metric) => (
           <div className="metric" key={metric.label}>

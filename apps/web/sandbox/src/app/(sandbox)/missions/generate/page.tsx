@@ -1,6 +1,5 @@
 import { Badge, Button, Card, Input, Select, Textarea } from "@automagic/ui";
 
-import { PageHeader } from "../../../_components/page-header";
 import { providers, skills } from "../../../_data/sandbox";
 
 export default function GenerateMissionPage() {
@@ -8,8 +7,6 @@ export default function GenerateMissionPage() {
 
   return (
     <div className="sandbox-page">
-      <PageHeader route="/missions/generate" />
-
       <section className="provider-grid">
         <Card title="Configuration" eyebrow="BYOK">
           <div className="progress-list">

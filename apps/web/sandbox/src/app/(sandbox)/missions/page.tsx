@@ -1,16 +1,10 @@
 import { Badge, Button, Card } from "@automagic/ui";
 
-import { PageHeader } from "../../_components/page-header";
 import { difficultyLabel, missions, skillName, skills } from "../../_data/sandbox";
 
 export default function MissionsPage() {
   return (
     <div className="sandbox-page">
-      <PageHeader
-        route="/missions"
-        action={<Button href="/missions/generate" variant="primary" label="Generate mission" />}
-      />
-
       <div className="two-column-grid">
         <Card title="Filters" eyebrow="Library">
           <div className="progress-list">

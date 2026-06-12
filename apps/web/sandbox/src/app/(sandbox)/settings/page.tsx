@@ -1,13 +1,10 @@
 import { Badge, Button, Card, Input, Select } from "@automagic/ui";
 
-import { PageHeader } from "../../_components/page-header";
 import { providers } from "../../_data/sandbox";
 
 export default function SettingsPage() {
   return (
     <div className="sandbox-page">
-      <PageHeader route="/settings" />
-
       <section className="provider-grid">
         <Card title="AI providers" eyebrow="Bring your own key">
           <ul className="provider-list">

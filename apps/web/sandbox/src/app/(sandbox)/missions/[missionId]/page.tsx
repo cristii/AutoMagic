@@ -1,7 +1,6 @@
 import { notFound } from "next/navigation";
 import { Badge, Button, Card, Input, Textarea } from "@automagic/ui";
 
-import { PageHeader } from "../../../_components/page-header";
 import { difficultyLabel, findMission, skillName } from "../../../_data/sandbox";
 import { getSimulatedTool } from "../../../_simulated-tools";
 
@@ -23,21 +22,13 @@ export default async function MissionPage({ params }: MissionPageProps) {
 
   return (
     <div className="sandbox-page">
-      <PageHeader
-        title={mission.title}
-        subtitle="Work the brief in the simulated tool, then submit for BYOK-powered review."
-        action={
+      <section className="cockpit">
+        <Card title="Brief" eyebrow="Objectives">
           <div className="inline-row">
             <Badge tone="accent">{difficultyLabel(mission.difficulty)}</Badge>
             <Badge tone="info">{skillName(mission.skill)}</Badge>
             <Badge tone="warning">14:22</Badge>
-            <Button variant="primary" label="Submit for review" />
           </div>
-        }
-      />
-
-      <section className="cockpit">
-        <Card title="Brief" eyebrow="Objectives">
           <p className="muted">{mission.brief}</p>
           <ul className="objective-list">
             {mission.objectives.map((objective) => (

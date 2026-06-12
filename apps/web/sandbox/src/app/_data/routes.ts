@@ -2,6 +2,7 @@ export type SandboxRouteKey =
   | "/dashboard"
   | "/missions"
   | "/missions/generate"
+  | "/missions/workspace"
   | "/simulated-tools"
   | "/feedback"
   | "/portfolio"
@@ -11,6 +12,7 @@ export type SandboxRouteKey =
 export type SandboxIconName =
   | "dashboard"
   | "missions"
+  | "workspace"
   | "tools"
   | "feedback"
   | "portfolio"
@@ -24,6 +26,10 @@ export type SandboxRouteMeta = {
   subtitle: string;
   icon: SandboxIconName;
   badge?: string;
+  primaryAction?: {
+    label: string;
+    href?: string;
+  };
 };
 
 export const sandboxRoutes = {
@@ -33,6 +39,10 @@ export const sandboxRoutes = {
     title: "Dashboard",
     subtitle: "Track skill progress, active missions, coach scores, and practice momentum.",
     icon: "dashboard",
+    primaryAction: {
+      label: "Generate mission",
+      href: "/missions/generate",
+    },
   },
   missions: {
     href: "/missions",
@@ -40,6 +50,10 @@ export const sandboxRoutes = {
     title: "Mission library",
     subtitle: "Browse practice missions, filter by skill, or generate a new scenario.",
     icon: "missions",
+    primaryAction: {
+      label: "Generate mission",
+      href: "/missions/generate",
+    },
   },
   generateMission: {
     href: "/missions/generate",
@@ -48,6 +62,16 @@ export const sandboxRoutes = {
     subtitle: "Use a connected BYOK provider to create a unique practice brief.",
     icon: "missions",
   },
+  missionWorkspace: {
+    href: "/missions/workspace",
+    label: "Mission workspace",
+    title: "Mission workspace",
+    subtitle: "Work the brief in the simulated tool, then submit for BYOK-powered review.",
+    icon: "workspace",
+    primaryAction: {
+      label: "Submit for review",
+    },
+  },
   simulatedTools: {
     href: "/simulated-tools",
     label: "Simulated tools",
@@ -55,6 +79,9 @@ export const sandboxRoutes = {
     subtitle:
       "Practice inbox, CRM, spreadsheet, calendar, support, ecommerce, and automation workflows without scoring.",
     icon: "tools",
+    primaryAction: {
+      label: "Reset data",
+    },
   },
   feedback: {
     href: "/feedback",
@@ -68,7 +95,7 @@ export const sandboxRoutes = {
     href: "/portfolio",
     label: "Portfolio",
     title: "Portfolio",
-    subtitle: "Prepare profile highlights, certificates, and proof of readiness.",
+    subtitle: "Prepare profile highlights, certificates, and readiness proof.",
     icon: "portfolio",
   },
   achievements: {
@@ -97,8 +124,16 @@ export const sandboxNavRoutes = [
   sandboxRoutes.settings,
 ];
 
-export function sandboxRouteByHref(href: SandboxRouteKey): SandboxRouteMeta {
-  const route = Object.values(sandboxRoutes).find((item) => item.href === href);
+export function sandboxRouteByPathname(pathname: string): SandboxRouteMeta {
+  if (pathname === "/missions/generate") {
+    return sandboxRoutes.generateMission;
+  }
+
+  if (pathname.startsWith("/missions/")) {
+    return sandboxRoutes.missionWorkspace;
+  }
+
+  const route = Object.values(sandboxRoutes).find((item) => item.href === pathname);
 
   if (!route) {
     return sandboxRoutes.dashboard;
