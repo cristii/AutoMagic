@@ -6,13 +6,17 @@ import type { ReactNode } from "react";
 
 import { findMission } from "../_data/sandbox";
 import { sandboxNavRoutes, sandboxRouteByPathname } from "../_data/routes";
+import {
+  SIMULATED_TOOL_RESET_EVENT,
+  SIMULATED_TOOL_SUBMIT_EVENT,
+} from "../_simulated-tools/events";
 import { SandboxIcon } from "./icons";
 
 const navItems = sandboxNavRoutes.map((route) => ({
   href: route.href,
   label: route.label,
   icon: <SandboxIcon name={route.icon} />,
-  badge: route.badge,
+  badge: "badge" in route ? route.badge : undefined,
 }));
 
 export function SandboxShell({ children }: { children: ReactNode }) {
@@ -24,6 +28,16 @@ export function SandboxShell({ children }: { children: ReactNode }) {
       : undefined;
   const mission = missionId ? findMission(missionId) : undefined;
   const title = mission?.title ?? route.title;
+  const handlePrimaryAction = () => {
+    if (pathname === "/simulated-tools") {
+      window.dispatchEvent(new CustomEvent(SIMULATED_TOOL_RESET_EVENT));
+      return;
+    }
+
+    if (mission && pathname.startsWith("/missions/")) {
+      window.dispatchEvent(new CustomEvent(SIMULATED_TOOL_SUBMIT_EVENT));
+    }
+  };
   const primaryAction = route.primaryAction ? (
     route.primaryAction.href ? (
       <Button
@@ -32,7 +46,7 @@ export function SandboxShell({ children }: { children: ReactNode }) {
         label={route.primaryAction.label}
       />
     ) : (
-      <Button variant="primary" label={route.primaryAction.label} />
+      <Button onClick={handlePrimaryAction} variant="primary" label={route.primaryAction.label} />
     )
   ) : null;
 

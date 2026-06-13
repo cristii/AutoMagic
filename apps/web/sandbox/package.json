@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start -p 3003",
     "lint": "eslint",
+    "test": "node --test --experimental-transform-types src/app/_simulated-tools/*.test.ts",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {

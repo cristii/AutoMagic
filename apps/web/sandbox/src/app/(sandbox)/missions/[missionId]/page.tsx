@@ -3,6 +3,7 @@ import { Badge, Button, Card, Input, Textarea } from "@automagic/ui";
 
 import { difficultyLabel, findMission, skillName } from "../../../_data/sandbox";
 import { getSimulatedTool } from "../../../_simulated-tools";
+import { SimulatedToolRunner } from "../../../_simulated-tools/simulated-tool-runner";
 
 type MissionPageProps = {
   params: Promise<{
@@ -17,8 +18,6 @@ export default async function MissionPage({ params }: MissionPageProps) {
   if (!mission) notFound();
 
   const tool = getSimulatedTool(mission.toolType);
-  const seed = tool.seedData();
-  const Surface = tool.Surface;
 
   return (
     <div className="sandbox-page">
@@ -45,7 +44,7 @@ export default async function MissionPage({ params }: MissionPageProps) {
         </Card>
 
         <Card title={tool.label} eyebrow="Simulated tool" className="tool-panel">
-          <Surface seed={seed} mode="mission" />
+          <SimulatedToolRunner key={mission.toolType} mode="mission" toolType={mission.toolType} />
         </Card>
 
         <Card title="AI Coach" eyebrow={mission.generatedByModel ?? "default model"}>

@@ -7,14 +7,16 @@ export type SkillKey =
   | "automation";
 
 export type MissionStatus = "new" | "in_progress" | "submitted" | "graded";
-export type ToolType =
-  | "inbox"
-  | "calendar"
-  | "crm"
-  | "spreadsheet"
-  | "support"
-  | "ecommerce"
-  | "automation";
+export const toolTypes = [
+  "inbox",
+  "calendar",
+  "crm",
+  "spreadsheet",
+  "support",
+  "ecommerce",
+  "automation",
+] as const;
+export type ToolType = (typeof toolTypes)[number];
 
 export type Skill = {
   key: SkillKey;

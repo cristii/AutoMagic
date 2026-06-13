@@ -726,11 +726,18 @@ th {
   max-width: 100%;
   border: 1px solid var(--am-border);
   border-radius: 999px;
+  background: transparent;
   color: var(--am-muted);
   padding: 6px 11px;
   font-size: var(--am-font-size-sm);
   line-height: var(--am-line-height-tight);
   overflow-wrap: anywhere;
+}
+
+.chip.active {
+  border-color: var(--am-accent);
+  background: var(--am-accent-soft);
+  color: var(--am-text);
 }
 
 .cockpit {
@@ -780,6 +787,12 @@ th {
   min-height: 560px;
 }
 
+.simulated-tool-runner {
+  display: grid;
+  gap: var(--am-space-md);
+  min-width: 0;
+}
+
 .tool-window {
   display: grid;
   grid-template-columns: minmax(180px, 220px) minmax(0, 1fr);
@@ -810,10 +823,22 @@ th {
 }
 
 .tool-list button strong,
-.tool-list button span {
+.tool-list button span,
+.tool-list button small,
+.tool-list div strong,
+.tool-list div span,
+.tool-list div small {
   display: block;
   min-width: 0;
   overflow-wrap: anywhere;
+}
+
+.tool-list button small,
+.tool-list div small {
+  margin-top: 4px;
+  color: var(--am-faint);
+  font-size: var(--am-font-size-xs);
+  line-height: var(--am-line-height-body);
 }
 
 .tool-list .active {
@@ -828,6 +853,56 @@ th {
   min-width: 0;
   overflow: auto;
   padding: var(--am-card-padding);
+}
+
+.tool-workspace > * {
+  min-width: 0;
+}
+
+.tool-grid {
+  display: grid;
+  gap: var(--am-space-md);
+  min-width: 0;
+}
+
+.tool-grid.two {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+}
+
+.tool-subpanel,
+.tool-option {
+  display: grid;
+  gap: var(--am-space-md);
+  min-width: 0;
+  border: 1px solid var(--am-border);
+  border-radius: var(--am-radius-md);
+  background: rgba(255, 255, 255, 0.025);
+  padding: var(--am-space-md);
+}
+
+.tool-option {
+  color: var(--am-muted);
+  text-align: left;
+}
+
+.tool-option span,
+.tool-option small {
+  display: block;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.tool-option.active {
+  border-color: var(--am-accent);
+  background: var(--am-accent-soft);
+  color: var(--am-text);
+}
+
+.table-scroll {
+  contain: inline-size;
+  max-width: 100%;
+  min-width: 0;
+  overflow-x: auto;
 }
 
 .table-like {
@@ -851,6 +926,23 @@ th {
   letter-spacing: 0.1em;
   line-height: var(--am-line-height-tight);
   text-transform: uppercase;
+}
+
+.table-like .am-field-label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.table-like .am-field {
+  min-width: 140px;
+}
+
+.tool-submit-state {
+  justify-content: flex-end;
 }
 
 .settings-row {
@@ -988,6 +1080,58 @@ th {
 
   .tool-list {
     border-right: 0;
+  }
+
+  .table-scroll {
+    overflow-x: visible;
+  }
+
+  .table-like,
+  .table-like thead,
+  .table-like tbody,
+  .table-like tr,
+  .table-like th,
+  .table-like td {
+    display: block;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .table-like {
+    min-width: 0;
+  }
+
+  .table-like thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  .table-like tr {
+    border-bottom: 1px solid var(--am-border);
+    padding: var(--am-space-md) 0;
+  }
+
+  .table-like th,
+  .table-like td {
+    border-bottom: 0;
+    padding: var(--am-space-sm) 0;
+  }
+
+  .table-like .am-field-label {
+    position: static;
+    width: auto;
+    height: auto;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+  }
+
+  .table-like .am-field {
+    min-width: 0;
   }
 
   .am-card {
